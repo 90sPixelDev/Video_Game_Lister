@@ -5,12 +5,14 @@ $mainBGColor: #090c9b;
 $subBGColor: #3d52d5;
 // Section colors
 $sectionColorDark: #3c3744;
+$sectionColorDarkHL: #756b84;
 $sectionColorLight: #b4c5e4;
 // Highlight Color
 $highlightColor: #fbfff1;
 
 // Variable Heights
-$headerHeight: 3vh;
+$headerHeightMobPort: 3vh;
+$headerHeightMobLand: 5vh;
 
 // ALL ENCOMPASING LAYOUT 
 
@@ -18,28 +20,29 @@ $headerHeight: 3vh;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
-    
+    color: white;
 }
 
 html {
     height: 100%;
 
     body {
+        position: absolutes;
         height: 100%;
-        background: linear-gradient(0deg, $mainBGColor, $subBGColor);
+        background: linear-gradient(to top, $mainBGColor, $subBGColor);
+        background-attachment: fixed;
     }
 }
 
 // SMALL SCREENS
 @media all and (max-width: 415px) {
-    @media all and (orientation: portrait) {
+    @media (orientation: portrait) {
         header {
             width: 100%;
-            // height: $headerHeight;
 
             .nav-bar {
                 width: 100%;
-                height: $headerHeight;
+                height: $headerHeightMobPort;
                 padding: 1em 0 1em 0;
                 background-color: $sectionColorDark;
     
@@ -51,7 +54,6 @@ html {
                         list-style: none;
                         a {
                             text-decoration: none;
-                            color: white;
 
                             &:hover {
                                 color: red;
@@ -64,20 +66,170 @@ html {
         }
 
         .welcome {
-            height: calc(100vh - $headerHeight);
+            height: calc(100vh - $headerHeightMobPort);
             padding: 3em 1em 0 1em;
 
             .main-section {
 
                 .intro {
                     text-align: center;
-                    color: white;
                 }
+                h2 {
+                    text-align: center;
+                    margin: 3em 0 1em 0;
+                }
+                .flex-holder {
+                    display: flex;
+                    justify-content: space-evenly;
+                    .info {
+                        background-color: $sectionColorDark;
+                        text-align: center;
+                        width: 30vw;
+                        height: 30vw;
+                        padding: 1em;
+
+                        display: flex;
+                        &:hover p {
+                            color: red;
+                        }
+                        p {
+                            display: block;
+                            margin: auto;
+                        }
+                    }
+                }
+            }
+  
+        }
+
+        .info {
+            margin-top: 3em;
+
+            h2 {
+                margin-left: 1em;
+            }
+
+            .used-container {
+                margin-top: 2em;
+                width: 100%;
+                background-color: $sectionColorDark;
+                padding: 2em;
+
+            }
+        }
+
+        footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 2em;
+
+            p {
+                text-align: center;
             }
         }
     }
-    @media all and (orientation: landscape) {
+}
 
+@media all and (max-width: 896px) {
+    @media (orientation: landscape) {
+        header {
+            width: 100%;
+
+            .nav-bar {
+                width: 100%;
+                height: $headerHeightMobLand;
+                padding: 1em 0 1em 0;
+                background-color: $sectionColorDark;
+    
+                ul {
+                    display: flex;
+                    justify-content: space-evenly;
+                    
+                    .nav-item {
+                        list-style: none;
+                        a {
+                            text-decoration: none;
+
+                            &:hover {
+                                color: red;
+                            }
+    
+                        }
+                    }
+                }
+            }
+        }
+
+        .welcome {
+            height: calc(100vh - $headerHeightMobPort);
+            padding: 3em 1em 0 1em;
+
+            .main-section {
+
+                .intro {
+                    text-align: center;
+                }
+                h2 {
+                    margin: auto;
+                }
+                .mobile-land-container {
+                    display: flex;
+                    justify-content: space-evenly;
+
+                    .flex-holder {
+                        display: flex;
+                        width: 70vw;
+                        justify-content: space-evenly;
+
+                        .info {
+                            background-color: $sectionColorDark;
+                            text-align: center;
+                            width: 20vw;
+                            height: 20vw;
+                            padding: 1em;
+    
+                            display: flex;
+                            &:hover p {
+                                color: red;
+                            }
+                            p {
+                                margin: auto;
+                            }
+                        }
+                    }
+                }
+
+            }
+  
+        }
+
+        .info {
+            margin-top: 3em;
+
+            h2 {
+                margin-left: 1em;
+            }
+
+            .used-container {
+                margin-top: 2em;
+                width: 100%;
+                background-color: $sectionColorDark;
+                padding: 2em;
+
+            }
+        }
+
+        footer {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 4em;
+
+            p {
+            }
+        }
     }
 }
 
