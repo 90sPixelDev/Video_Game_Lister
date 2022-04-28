@@ -7,4 +7,10 @@ html {
   margin: 0;
   padding: 0;
 }
+
+html body {
+  height: 100%;
+  background: -webkit-gradient(linear, left bottom, left top, from(#090c9b), to(#3d52d5));
+  background: linear-gradient(0deg, #090c9b, #3d52d5);
+}
 /*# sourceMappingURL=style.css.map */

@@ -2,12 +2,33 @@
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
+// Main BG Colors
+$mainBGColor: #090c9b;
+$subBGColor: #3d52d5;
+// Section colors
+$sectionColorDark: #3c3744;
+$sectionColorLight: #b4c5e4;
+// Highlight Color
+$highlightColor: #fbfff1;
+
 html {
     height: 100%;
     margin: 0;
     padding: 0;
 
     body {
+        height: 100%;
+        background: linear-gradient(0deg, $mainBGColor, $subBGColor);
+    }
+}
+
+@media all and (max-width: 415px) {
+    @media all (orientation: portrait) {
+
+    }
+    @media all and (orientation: landscape) {
 
     }
 }
+
+
