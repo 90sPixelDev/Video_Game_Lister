@@ -1,6 +1,4 @@
-* {
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-}
+// VARIABLE SECTION
 
 // Main BG Colors
 $mainBGColor: #090c9b;
@@ -11,10 +9,20 @@ $sectionColorLight: #b4c5e4;
 // Highlight Color
 $highlightColor: #fbfff1;
 
-html {
-    height: 100%;
+// Variable Heights
+$headerHeight: 3vh;
+
+// ALL ENCOMPASING LAYOUT 
+
+* {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
+    
+}
+
+html {
+    height: 100%;
 
     body {
         height: 100%;
@@ -22,9 +30,51 @@ html {
     }
 }
 
+// SMALL SCREENS
 @media all and (max-width: 415px) {
-    @media all (orientation: portrait) {
+    @media all and (orientation: portrait) {
+        header {
+            width: 100%;
+            // height: $headerHeight;
 
+            .nav-bar {
+                width: 100%;
+                height: $headerHeight;
+                padding: 1em 0 1em 0;
+                background-color: $sectionColorDark;
+    
+                ul {
+                    display: flex;
+                    justify-content: space-evenly;
+                    
+                    .nav-item {
+                        list-style: none;
+                        a {
+                            text-decoration: none;
+                            color: white;
+
+                            &:hover {
+                                color: red;
+                            }
+    
+                        }
+                    }
+                }
+            }
+        }
+
+        .welcome {
+            height: calc(100vh - $headerHeight);
+            padding: 3em 1em 0 1em;
+
+            .main-section {
+
+                .intro {
+                    text-align: center;
+                    color: white;
+                }
+            }
+        }
     }
     @media all and (orientation: landscape) {
 
