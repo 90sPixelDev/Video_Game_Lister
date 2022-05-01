@@ -9,6 +9,7 @@ const options = {
 const gameItem = document.querySelectorAll('.game-item');
 const nextPage = document.querySelector('.next-page');
 const prevPage = document.querySelector('.prev-page');
+const pageNum = document.querySelectorAll('.page-holder p');
 let page = 1;
 
 const loadGameList = (data) => {
@@ -18,29 +19,23 @@ const loadGameList = (data) => {
 		startIndex = 0;
 		lastIndex = 15;
 	}
-	switch (page) {
-		case 2:
-			lastIndex = 15 * page;
-			break;
-		case 3:
-			lastIndex = 15 * page;
-			break;
-		case 4:
-			lastIndex = 15 * page;
-			break;
-		case 5:
-			lastIndex = 15 * page;
-			break;
-	}
+	startIndex = (page - 1) * 15;
+	lastIndex = 15 * page;
 	let titleArr = [];
+	let count = 0;
+	console.log('startIndex: ' + startIndex);
+	console.log('lastIndex: ' + lastIndex);
 	for (let i = startIndex; i < lastIndex; i++) {
 		let title = data[i].title;
 		let imgURL = data[i].thumbnail;
 		titleArr.push(title);
-		gameItem[i].innerText = titleArr[i];
-		createGameImg(gameItem[i], imgURL);
-		titleSize(gameItem[i], titleArr[i]);
+		gameItem[count].innerText = titleArr[count];
+		createGameImg(gameItem[count], imgURL);
+		titleSize(gameItem[count], titleArr[count]);
+		count++;
 	}
+	pageNum[0].innerText = page;
+	pageNum[1].innerText = page;
 };
 
 const createGameImg = (el, imgURL) => {
