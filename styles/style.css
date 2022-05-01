@@ -1,5 +1,5 @@
 * {
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   margin: 0;
   padding: 0;
   color: white;
@@ -20,6 +20,9 @@ html body {
 @media all and (max-width: 415px) and (orientation: portrait) {
   header {
     width: 100%;
+    -webkit-box-shadow: 0 0 3vh black;
+            box-shadow: 0 0 3vh black;
+    border-radius: 1em;
   }
   header .nav-bar {
     width: 100%;
@@ -97,9 +100,9 @@ html body {
     background-color: #3c3744;
     padding: 2em;
   }
-  .games {
-    height: 80vh;
+  main .games {
     width: 100%;
+    margin-bottom: 3em;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -108,19 +111,72 @@ html body {
         -ms-flex-direction: column;
             flex-direction: column;
   }
-  .games h1 {
-    margin: 1em;
+  main .games .top {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-row-align: center;
+        align-self: center;
+    width: 90%;
+    -ms-grid-columns: (1fr)[4];
+        grid-template-columns: repeat(4, 1fr);
+    -ms-grid-rows: 1fr 2fr;
+        grid-template-rows: 1fr 2fr;
+        grid-template-areas: 'games games search search' 'games games bar select';
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
+    margin-top: 4em;
   }
-  .games .container {
-    width: 80%;
-    height: 100%;
+  main .games .top h1 {
+    font-size: 2em;
+    margin: auto;
+    text-align: center;
+    -ms-grid-row: 1;
+    -ms-grid-row-span: 2;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 2;
+    grid-area: games;
+  }
+  main .games .top label {
+    -ms-grid-row: 1;
+    -ms-grid-column: 3;
+    -ms-grid-column-span: 2;
+    grid-area: search;
+  }
+  main .games .top input {
+    -ms-grid-row: 2;
+    -ms-grid-column: 3;
+    grid-area: bar;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 10em;
+    height: 2em;
+  }
+  main .games .top select {
+    -ms-grid-row: 2;
+    -ms-grid-column: 4;
+    grid-area: select;
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 2.3em;
+    width: 5em;
+  }
+  main .games .top .search-games {
+    -ms-grid-row: 2;
+    -ms-grid-column: 3;
+    grid-area: bar;
+  }
+  main .games .container {
+    width: 90%;
+    max-height: 475vh;
+    padding: 1.5em 0;
+    border-radius: 1em;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     -ms-flex-item-align: center;
         align-self: center;
-    -ms-flex-pack: distribute;
-        justify-content: space-around;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
     -ms-flex-line-pack: start;
         align-content: flex-start;
     -webkit-box-align: start;
@@ -128,31 +184,60 @@ html body {
             align-items: flex-start;
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
-    gap: 1em;
-    background-color: rgba(255, 255, 255, 0.25);
+    gap: 0.1em;
+    background-color: rgba(0, 0, 0, 0.25);
   }
-  .games .container .game-item {
+  main .games .container .game-item {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    max-width: 20vw;
+    max-width: 75vw;
+    height: 47.5vw;
     -webkit-box-orient: vertical;
     -webkit-box-direction: reverse;
         -ms-flex-direction: column-reverse;
             flex-direction: column-reverse;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
     list-style: none;
     text-align: center;
+    margin-bottom: 1em;
+    background-color: rgba(0, 0, 0, 0.25);
   }
-  .games .container .game-item img {
-    -webkit-box-shadow: inset 0 0 1em black;
-            box-shadow: inset 0 0 1em black;
-    width: 20vw;
-    height: 15vh;
+  main .games .container .game-item img {
+    -webkit-box-shadow: 0 0 1em rgba(0, 0, 0, 0.5);
+            box-shadow: 0 0 1em rgba(0, 0, 0, 0.5);
+    width: 75vw;
+    height: 42vw;
+  }
+  main .btn-holder {
+    background: -webkit-gradient(linear, left top, right top, from(transparent), color-stop(rgba(0, 0, 0, 0.5)), to(transparent));
+    background: linear-gradient(to right, transparent, rgba(0, 0, 0, 0.5), transparent);
+    text-align: center;
+    margin: 0.5em 0 1em 0;
+  }
+  main .btn-holder button {
+    margin: 0.25em 0.5em;
+    width: 1.25em;
+    background-color: transparent;
+    border: none;
+    text-decoration: none;
+    font-size: 4em;
+  }
+  .page-holder p {
+    margin: 1em 0;
+    text-align: center;
+    font-size: 2em;
   }
   footer {
-    margin-top: 0.5em;
+    margin-top: 3em;
+    padding: 1em 0;
+    border-top: 1px solid white;
+    -webkit-box-shadow: 0 0 1em rgba(255, 255, 255, 0.5);
+            box-shadow: 0 0 1em rgba(255, 255, 255, 0.5);
+    background-color: #3c3744;
     width: 100%;
-    height: 4em;
   }
   footer a {
     display: block;

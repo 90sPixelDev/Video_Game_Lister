@@ -21,7 +21,7 @@
 						<a href="#">Trending</a>
 					</li>
 					<li class="nav-item">
-						<a href="#">Browse</a>
+						<a href="browse.html">Browse</a>
 					</li>
 				</ul>
 			</div>
@@ -29,22 +29,50 @@
 
 		<main>
 			<section class="games">
-				<h1>Games</h1>
+				<section class="top">
+					<h1>Games</h1>
+					<label for="search-game">Search:</label>
+					<input type="text" name="search-game" class="search-game" />
+					<select name="search-type" id="search-type">
+						<option value="Title">Title</option>
+						<option value="Genre">Genre</option>
+						<option value="Developer">Developer</option>
+						<option value="Publisher">Publisher</option>
+					</select>
+				</section>
+				<div class="page-holder">
+					<p>1</p>
+				</div>
 				<ol class="container">
-					<li class="game-item">Halo<img src="" /></li>
-					<li class="game-item">Pokemon<img src="" /></li>
-					<li class="game-item">
-						Animal Crossing<img src="" />
-					</li>
-					<li class="game-item">Genshin Impact<img src="" /></li>
-					<li class="game-item">Skyrim<img src="" /></li>
+					<a href="" class="game-item"></a>
+					<a href="" class="game-item"></a>
+					<a href="" class="game-item"></a>
+					<a href="" class="game-item"></a>
+					<a href="" class="game-item"></a>
+					<a href="" class="game-item"></a>
+					<a href="" class="game-item"></a>
+					<a href="" class="game-item"></a>
+					<a href="" class="game-item"></a>
+					<a href="" class="game-item"></a>
+					<a href="" class="game-item"></a>
+					<a href="" class="game-item"></a>
+					<a href="" class="game-item"></a>
+					<a href="" class="game-item"></a>
+					<a href="" class="game-item"></a>
 				</ol>
 			</section>
+			<div class="btn-holder">
+				<button class="prev-page"><</button>
+				<button class="next-page">></button>
+			</div>
+			<div class="page-holder">
+				<p>1</p>
+			</div>
 		</main>
 		<footer>
 			<a href="about.html">About | How it works -></a>
 			<p>Created, developed, and designed by Lien Font &copy;</p>
 		</footer>
-		<script src="scripts/api-call.js"></script>
+		<script src="scripts/browse.js"></script>
 	</body>
 </html>
