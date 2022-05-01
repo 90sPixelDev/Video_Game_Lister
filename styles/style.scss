@@ -14,223 +14,263 @@ $highlightColor: #fbfff1;
 $headerHeightMobPort: 3vh;
 $headerHeightMobLand: 5vh;
 
-// ALL ENCOMPASING LAYOUT 
+// ALL ENCOMPASING LAYOUT
 
 * {
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    margin: 0;
-    padding: 0;
-    color: white;
+	font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+		'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+	margin: 0;
+	padding: 0;
+	color: white;
+
+	// outline: 1px solid red;
 }
 
 html {
-    height: 100%;
+	height: 100%;
 
-    body {
-        position: absolutes;
-        height: 100%;
-        background: linear-gradient(to top, $mainBGColor, $subBGColor);
-        background-attachment: fixed;
-    }
+	body {
+		position: absolutes;
+		height: 100%;
+		background: linear-gradient(to top, $mainBGColor, $subBGColor);
+		background-attachment: fixed;
+	}
 }
 
 // SMALL SCREENS
 @media all and (max-width: 415px) {
-    @media (orientation: portrait) {
-        header {
-            width: 100%;
+	@media (orientation: portrait) {
+		header {
+			width: 100%;
 
-            .nav-bar {
-                width: 100%;
-                height: $headerHeightMobPort;
-                padding: 1em 0 1em 0;
-                background-color: $sectionColorDark;
-    
-                ul {
-                    display: flex;
-                    justify-content: space-evenly;
-                    
-                    .nav-item {
-                        list-style: none;
-                        a {
-                            text-decoration: none;
+			.nav-bar {
+				width: 100%;
+				height: $headerHeightMobPort;
+				padding: 1em 0 1em 0;
+				background-color: $sectionColorDark;
 
-                            &:hover {
-                                color: red;
-                            }
-    
-                        }
-                    }
-                }
-            }
-        }
+				ul {
+					display: flex;
+					justify-content: space-evenly;
 
-        .welcome {
-            height: calc(100vh - $headerHeightMobPort);
-            padding: 3em 1em 0 1em;
+					.nav-item {
+						list-style: none;
+						a {
+							text-decoration: none;
 
-            .main-section {
+							&:hover {
+								color: red;
+							}
+						}
+					}
+				}
+			}
+		}
 
-                .intro {
-                    text-align: center;
-                }
-                h2 {
-                    text-align: center;
-                    margin: 3em 0 1em 0;
-                }
-                .flex-holder {
-                    display: flex;
-                    justify-content: space-evenly;
-                    .info {
-                        background-color: $sectionColorDark;
-                        text-align: center;
-                        width: 30vw;
-                        height: 30vw;
-                        padding: 1em;
+		.welcome {
+			height: calc(100vh - $headerHeightMobPort);
+			padding: 3em 1em 0 1em;
 
-                        display: flex;
-                        &:hover p {
-                            color: red;
-                        }
-                        p {
-                            display: block;
-                            margin: auto;
-                        }
-                    }
-                }
-            }
-  
-        }
+			.main-section {
+				.intro {
+					text-align: center;
+				}
+				h2 {
+					text-align: center;
+					margin: 3em 0 1em 0;
+				}
+				.flex-holder {
+					display: flex;
+					justify-content: space-evenly;
+					.info {
+						background-color: $sectionColorDark;
+						text-align: center;
+						width: 30vw;
+						height: 30vw;
+						padding: 1em;
 
-        .info {
-            margin-top: 3em;
+						display: flex;
+						&:hover p {
+							color: red;
+						}
+						p {
+							display: block;
+							margin: auto;
+						}
+					}
+				}
+			}
 
-            h2 {
-                margin-left: 1em;
-            }
+			#item-input {
+				display: block;
+				margin: auto;
+				color: black;
+			}
+			// .item-added {
 
-            .used-container {
-                margin-top: 2em;
-                width: 100%;
-                background-color: $sectionColorDark;
-                padding: 2em;
+			// }
+		}
 
-            }
-        }
+		.info {
+			margin-top: 3em;
 
-        footer {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            height: 2em;
+			h2 {
+				margin-left: 1em;
+			}
 
-            p {
-                text-align: center;
-            }
-        }
-    }
+			.used-container {
+				margin-top: 1em;
+				width: 100%;
+				background-color: $sectionColorDark;
+				padding: 2em;
+			}
+		}
+
+		.games {
+			height: 80vh;
+			width: 100%;
+			display: flex;
+			flex-direction: column;
+
+			h1 {
+				margin: 1em;
+			}
+			.container {
+				width: 80%;
+				height: 100%;
+				display: flex;
+				align-self: center;
+				justify-content: space-around;
+				align-content: flex-start;
+				align-items: flex-start;
+				flex-wrap: wrap;
+				gap: 1em;
+				background-color: rgba(255, 255, 255, 0.25);
+				.game-item {
+					display: flex;
+					max-width: 20vw;
+					flex-direction: column-reverse;
+					list-style: none;
+					text-align: center;
+					img {
+						box-shadow: inset 0 0 1em black;
+						width: 20vw;
+						height: 15vh;
+					}
+				}
+			}
+		}
+
+		footer {
+			margin-top: 0.5em;
+			width: 100%;
+			height: 4em;
+
+			a {
+				display: block;
+				text-align: center;
+				color: rgb(199, 199, 199);
+			}
+			p {
+				text-align: center;
+			}
+		}
+	}
 }
 
 @media all and (max-width: 896px) {
-    @media (orientation: landscape) {
-        header {
-            width: 100%;
+	@media (orientation: landscape) {
+		header {
+			width: 100%;
 
-            .nav-bar {
-                width: 100%;
-                height: $headerHeightMobLand;
-                padding: 1em 0 1em 0;
-                background-color: $sectionColorDark;
-    
-                ul {
-                    display: flex;
-                    justify-content: space-evenly;
-                    
-                    .nav-item {
-                        list-style: none;
-                        a {
-                            text-decoration: none;
+			.nav-bar {
+				width: 100%;
+				height: $headerHeightMobLand;
+				padding: 1em 0 1em 0;
+				background-color: $sectionColorDark;
 
-                            &:hover {
-                                color: red;
-                            }
-    
-                        }
-                    }
-                }
-            }
-        }
+				ul {
+					display: flex;
+					justify-content: space-evenly;
 
-        .welcome {
-            height: calc(100vh - $headerHeightMobPort);
-            padding: 3em 1em 0 1em;
+					.nav-item {
+						list-style: none;
+						a {
+							text-decoration: none;
 
-            .main-section {
+							&:hover {
+								color: red;
+							}
+						}
+					}
+				}
+			}
+		}
 
-                .intro {
-                    text-align: center;
-                }
-                h2 {
-                    margin: auto;
-                }
-                .mobile-land-container {
-                    display: flex;
-                    justify-content: space-evenly;
+		.welcome {
+			height: calc(100vh - $headerHeightMobPort);
+			padding: 3em 1em 0 1em;
 
-                    .flex-holder {
-                        display: flex;
-                        width: 70vw;
-                        justify-content: space-evenly;
+			.main-section {
+				.intro {
+					text-align: center;
+				}
+				h2 {
+					margin: auto;
+				}
+				.mobile-land-container {
+					display: flex;
+					justify-content: space-evenly;
 
-                        .info {
-                            background-color: $sectionColorDark;
-                            text-align: center;
-                            width: 20vw;
-                            height: 20vw;
-                            padding: 1em;
-    
-                            display: flex;
-                            &:hover p {
-                                color: red;
-                            }
-                            p {
-                                margin: auto;
-                            }
-                        }
-                    }
-                }
+					.flex-holder {
+						display: flex;
+						width: 70vw;
+						justify-content: space-evenly;
 
-            }
-  
-        }
+						.info {
+							background-color: $sectionColorDark;
+							text-align: center;
+							width: 20vw;
+							height: 20vw;
+							padding: 1em;
 
-        .info {
-            margin-top: 3em;
+							display: flex;
+							&:hover p {
+								color: red;
+							}
+							p {
+								margin: auto;
+							}
+						}
+					}
+				}
+			}
+		}
 
-            h2 {
-                margin-left: 1em;
-            }
+		.info {
+			margin-top: 3em;
 
-            .used-container {
-                margin-top: 2em;
-                width: 100%;
-                background-color: $sectionColorDark;
-                padding: 2em;
+			h2 {
+				margin-left: 1em;
+			}
 
-            }
-        }
+			.used-container {
+				margin-top: 2em;
+				width: 100%;
+				background-color: $sectionColorDark;
+				padding: 2em;
+			}
+		}
 
-        footer {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            height: 4em;
+		footer {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 100%;
+			height: 4em;
 
-            p {
-            }
-        }
-    }
+			p {
+			}
+		}
+	}
 }
-
-
