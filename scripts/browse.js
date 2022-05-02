@@ -82,3 +82,5 @@ prevPage.addEventListener('click', () => {
 		.then(checkStatus)
 		.then(loadGameList);
 });
+
+document.addEventListener('DOMContentLoaded', (el) => {});
