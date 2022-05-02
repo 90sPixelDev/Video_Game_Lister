@@ -54,11 +54,11 @@ html body {
   .welcome .main-section .intro {
     text-align: center;
   }
-  .welcome .main-section h2 {
+  .welcome .main-section .mobile-land-container h2 {
+    margin-top: 2.5em;
     text-align: center;
-    margin: 3em 0 1em 0;
   }
-  .welcome .main-section .flex-holder {
+  .welcome .main-section .mobile-land-container .flex-holder {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -66,22 +66,18 @@ html body {
         -ms-flex-pack: space-evenly;
             justify-content: space-evenly;
   }
-  .welcome .main-section .flex-holder .info {
+  .welcome .main-section .mobile-land-container .flex-holder .info {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
     background-color: #3c3744;
     text-align: center;
     width: 30vw;
     height: 30vw;
     padding: 1em;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
   }
-  .welcome .main-section .flex-holder .info:hover p {
+  .welcome .main-section .mobile-land-container .flex-holder .info:hover p {
     color: red;
-  }
-  .welcome .main-section .flex-holder .info p {
-    display: block;
-    margin: auto;
   }
   .welcome #item-input {
     display: block;
@@ -100,9 +96,56 @@ html body {
     background-color: #3c3744;
     padding: 2em;
   }
+  main .home h1 {
+    text-align: center;
+    margin: 1.5em 0 2em 0;
+    font-size: 3em;
+  }
+  main .home .question1 {
+    display: inline-block;
+    background-color: #090c9b;
+    margin: 0 0 5em 0;
+    padding: 1em 2em 1em 2em;
+    border-radius: 0 5em 5em 0;
+  }
+  main .home .first-cover {
+    float: right;
+    background-color: #090c9b;
+    margin: 0 0 5em 0;
+    padding: 1em 2em 1em 2em;
+    border-radius: 5em 0 0 5em;
+  }
+  main .home h2 {
+    text-align: center;
+    margin: 5em 2em 5em 2em;
+    line-height: 1.75em;
+  }
+  main .home img {
+    width: 100%;
+    -webkit-box-shadow: 0 0 3em rgba(0, 0, 0, 0.5);
+            box-shadow: 0 0 3em rgba(0, 0, 0, 0.5);
+  }
+  main .home .question-p {
+    text-align: center;
+    margin: 5em 1em;
+    font-size: 1.25em;
+  }
+  main .home .question-p span {
+    font-weight: 600;
+    color: red;
+  }
+  main .top {
+    margin-top: 3em;
+  }
+  main .top h1 {
+    font-size: 2em;
+    margin: auto;
+    text-align: center;
+    grid-area: games;
+  }
   main .games {
     width: 100%;
-    margin-bottom: 3em;
+    margin: 3em 0;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -111,60 +154,7 @@ html body {
         -ms-flex-direction: column;
             flex-direction: column;
   }
-  main .games .top {
-    display: -ms-grid;
-    display: grid;
-    -ms-grid-row-align: center;
-        align-self: center;
-    width: 90%;
-    -ms-grid-columns: (1fr)[4];
-        grid-template-columns: repeat(4, 1fr);
-    -ms-grid-rows: 1fr 2fr;
-        grid-template-rows: 1fr 2fr;
-        grid-template-areas: 'games games search search' 'games games bar select';
-    -webkit-box-pack: space-evenly;
-        -ms-flex-pack: space-evenly;
-            justify-content: space-evenly;
-    margin-top: 4em;
-  }
-  main .games .top h1 {
-    font-size: 2em;
-    margin: auto;
-    text-align: center;
-    -ms-grid-row: 1;
-    -ms-grid-row-span: 2;
-    -ms-grid-column: 1;
-    -ms-grid-column-span: 2;
-    grid-area: games;
-  }
-  main .games .top label {
-    -ms-grid-row: 1;
-    -ms-grid-column: 3;
-    -ms-grid-column-span: 2;
-    grid-area: search;
-  }
-  main .games .top input {
-    -ms-grid-row: 2;
-    -ms-grid-column: 3;
-    grid-area: bar;
-    background-color: rgba(0, 0, 0, 0.5);
-    width: 10em;
-    height: 2em;
-  }
-  main .games .top select {
-    -ms-grid-row: 2;
-    -ms-grid-column: 4;
-    grid-area: select;
-    background-color: rgba(0, 0, 0, 0.5);
-    height: 2.3em;
-    width: 5em;
-  }
-  main .games .top .search-games {
-    -ms-grid-row: 2;
-    -ms-grid-column: 3;
-    grid-area: bar;
-  }
-  main .games .container {
+  main .container {
     width: 90%;
     max-height: 475vh;
     padding: 1.5em 0;
@@ -187,7 +177,7 @@ html body {
     gap: 0.1em;
     background-color: rgba(0, 0, 0, 0.25);
   }
-  main .games .container .game-item {
+  main .container .game-item {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -204,20 +194,26 @@ html body {
     text-align: center;
     margin-bottom: 1em;
     background-color: rgba(0, 0, 0, 0.25);
+    opacity: 0;
+    -webkit-transition: all 1s;
+    transition: all 1s;
   }
-  main .games .container .game-item img {
+  main .container .game-item img {
     -webkit-box-shadow: 0 0 1em rgba(0, 0, 0, 0.5);
             box-shadow: 0 0 1em rgba(0, 0, 0, 0.5);
     width: 75vw;
     height: 42vw;
   }
-  main .btn-holder {
+  main .container .fade-animated {
+    opacity: 100%;
+  }
+  .btn-holder {
     background: -webkit-gradient(linear, left top, right top, from(transparent), color-stop(rgba(0, 0, 0, 0.5)), to(transparent));
     background: linear-gradient(to right, transparent, rgba(0, 0, 0, 0.5), transparent);
     text-align: center;
     margin: 0.5em 0 1em 0;
   }
-  main .btn-holder button {
+  .btn-holder button {
     margin: 0.25em 0.5em;
     width: 1.25em;
     background-color: transparent;
@@ -230,6 +226,31 @@ html body {
     text-align: center;
     font-size: 2em;
   }
+  .bottom {
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .bottom input {
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 10em;
+    height: 2em;
+    caret-color: #3d52d5;
+  }
+  .bottom select {
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 2.3em;
+    width: 5em;
+    accent-color: black;
+  }
   footer {
     margin-top: 3em;
     padding: 1em 0;
@@ -238,6 +259,15 @@ html body {
             box-shadow: 0 0 1em rgba(255, 255, 255, 0.5);
     background-color: #3c3744;
     width: 100%;
+  }
+  footer .to-top {
+    position: fixed;
+    left: 1vw;
+    bottom: 5vh;
+    font-size: 5em;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    width: 1.5em;
   }
   footer a {
     display: block;

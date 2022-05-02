@@ -28,21 +28,18 @@
 		</header>
 
 		<main>
-			<section class="games">
-				<section class="top">
-					<h1>Games</h1>
-					<label for="search-game">Search:</label>
-					<input type="text" name="search-game" class="search-game" />
-					<select name="search-type" id="search-type">
-						<option value="Title">Title</option>
-						<option value="Genre">Genre</option>
-						<option value="Developer">Developer</option>
-						<option value="Publisher">Publisher</option>
-					</select>
-				</section>
+			<section class="top">
+				<h1>Games</h1>
 				<div class="page-holder">
 					<p>1</p>
 				</div>
+				<div class="btn-holder">
+					<button class="prev-page"><</button>
+					<button class="next-page">></button>
+				</div>
+			</section>
+
+			<section class="games">
 				<ol class="container">
 					<a href="" class="game-item anim"></a>
 					<a href="" class="game-item anim"></a>
@@ -61,15 +58,29 @@
 					<a href="" class="game-item anim"></a>
 				</ol>
 			</section>
-			<div class="btn-holder">
-				<button class="prev-page"><</button>
-				<button class="next-page">></button>
-			</div>
-			<div class="page-holder">
-				<p>1</p>
-			</div>
+
+			<section class="bottom">
+				<div class="btn-holder">
+					<button class="prev-page" id="prev-page"><</button>
+					<button class="next-page" id="next-page">></button>
+				</div>
+				<div class="page-holder">
+					<p>1</p>
+				</div>
+				<section class="search-area">
+					<label for="search-game">Search:</label>
+					<input type="text" name="search-game" class="search-game" />
+					<select name="search-type" id="search-type">
+						<option value="Title">Title</option>
+						<option value="Genre">Genre</option>
+						<option value="Developer">Developer</option>
+						<option value="Publisher">Publisher</option>
+					</select>
+				</section>
+			</section>
 		</main>
 		<footer>
+			<button class="to-top">^</button>
 			<a href="about.html">About | How it works -></a>
 			<p>Created, developed, and designed by Lien Font &copy;</p>
 		</footer>

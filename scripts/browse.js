@@ -1,3 +1,4 @@
+// API OPTIONS
 const options = {
 	method: 'GET',
 	headers: {
@@ -6,12 +7,17 @@ const options = {
 	},
 };
 
+// ALL VARIABLES USED
 const gameItem = document.querySelectorAll('.game-item');
 const nextPage = document.querySelector('.next-page');
+const nextPageB = document.querySelector('#next-page');
 const prevPage = document.querySelector('.prev-page');
+const prevPageB = document.querySelector('#prev-page');
 const pageNum = document.querySelectorAll('.page-holder p');
+const toTop = document.querySelector('.to-top');
 let page = 1;
 
+// LOADING THE VISUAL DATA DYNAMICALLY
 const loadGameList = (data) => {
 	let lastIndex;
 	let startIndex;
@@ -56,6 +62,7 @@ const checkStatus = (response) => {
 	return response.json();
 };
 
+// LOADING INITIAL DATA
 fetch('https://free-to-play-games-database.p.rapidapi.com/api/games', options)
 	.then(checkStatus)
 	.then((data) => {
@@ -65,22 +72,87 @@ fetch('https://free-to-play-games-database.p.rapidapi.com/api/games', options)
 	.then(loadGameList)
 	.catch((err) => console.error(err));
 
+// CHANGING PAGES AND LOADING DATA
 nextPage.addEventListener('click', () => {
-	console.log('Pressed the next page!');
-	page++;
-	console.log('Page: ' + page);
+	nextPageFunc();
+	fetch('https://free-to-play-games-database.p.rapidapi.com/api/games', options)
+		.then(checkStatus)
+		.then(loadGameList);
+});
+nextPageB.addEventListener('click', () => {
+	nextPageFunc();
 	fetch('https://free-to-play-games-database.p.rapidapi.com/api/games', options)
 		.then(checkStatus)
 		.then(loadGameList);
 });
 prevPage.addEventListener('click', () => {
-	if (page === 1) return;
-	console.log('Pressed the previous page!');
-	page--;
+	prevPageFunc();
+	console.log('Page: ' + page);
+	fetch('https://free-to-play-games-database.p.rapidapi.com/api/games', options)
+		.then(checkStatus)
+		.then(loadGameList);
+});
+prevPageB.addEventListener('click', () => {
+	prevPageFunc();
 	console.log('Page: ' + page);
 	fetch('https://free-to-play-games-database.p.rapidapi.com/api/games', options)
 		.then(checkStatus)
 		.then(loadGameList);
 });
 
-document.addEventListener('DOMContentLoaded', (el) => {});
+const nextPageFunc = () => {
+	console.log('Pressed the next page!');
+	page++;
+	console.log('Page: ' + page);
+};
+const prevPageFunc = () => {
+	if (page === 1) return;
+	console.log('Pressed the previous page!');
+	page--;
+};
+
+// prevPageB.addEventListener('click', () => {
+// 	if (page === 1) return;
+// 	console.log('Pressed the previous page!');
+// 	page--;
+// 	console.log('Page: ' + page);
+// 	fetch('https://free-to-play-games-database.p.rapidapi.com/api/games', options)
+// 		.then(checkStatus)
+// 		.then(loadGameList);
+// });
+
+// FADE ANIMATION FUNCTIONS
+const elementInView = (el, scrollOffset) => {
+	const elementTop = el.getBoundingClientRect().top;
+
+	return (
+		elementTop <= (Window.innerHeight || document.documentElement.clientHeight) - scrollOffset
+	);
+};
+
+const scrollAnimManager = () => {
+	gameItem.forEach((el) => {
+		if (elementInView(el, 100)) {
+			displayScrolledElement(el);
+		}
+	});
+};
+
+const displayScrolledElement = (el) => {
+	if (el.classList.contains('anim')) {
+		el.classList.add('fade-animated');
+	}
+};
+
+window.addEventListener('scroll', () => {
+	scrollAnimManager();
+});
+
+// 	SCROLL TO TOP FUNCTIONS
+const scrollTop = () => {
+	window.scrollTo({ top: 0, behavior: 'smooth' });
+};
+
+toTop.addEventListener('click', () => {
+	scrollTop();
+});
