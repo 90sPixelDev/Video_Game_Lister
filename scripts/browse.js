@@ -9,6 +9,7 @@ const options = {
 
 // ALL VARIABLES USED
 const gameItem = document.querySelectorAll('.game-item');
+const animatedItem = document.querySelectorAll('.anim');
 const nextPage = document.querySelector('.next-page');
 const nextPageB = document.querySelector('#next-page');
 const prevPage = document.querySelector('.prev-page');
@@ -19,6 +20,7 @@ let page = 1;
 
 // LOADING THE VISUAL DATA DYNAMICALLY
 const loadGameList = (data) => {
+	if (gameItem === undefined) return;
 	let lastIndex;
 	let startIndex;
 	if (page === 1) {
@@ -42,7 +44,13 @@ const loadGameList = (data) => {
 	}
 	pageNum[0].innerText = page;
 	pageNum[1].innerText = page;
+
+	animatedItem.forEach((el) => {
+		notInView(el);
+	});
 };
+
+const playPageAnim = () => {};
 
 const createGameImg = (el, imgURL) => {
 	const img = document.createElement('img');
@@ -111,36 +119,53 @@ const prevPageFunc = () => {
 	page--;
 };
 
-// prevPageB.addEventListener('click', () => {
-// 	if (page === 1) return;
-// 	console.log('Pressed the previous page!');
-// 	page--;
-// 	console.log('Page: ' + page);
-// 	fetch('https://free-to-play-games-database.p.rapidapi.com/api/games', options)
-// 		.then(checkStatus)
-// 		.then(loadGameList);
-// });
-
 // FADE ANIMATION FUNCTIONS
 const elementInView = (el, scrollOffset) => {
 	const elementTop = el.getBoundingClientRect().top;
 
-	return (
-		elementTop <= (Window.innerHeight || document.documentElement.clientHeight) - scrollOffset
-	);
+	if (
+		elementTop >=
+			(Window.innerHeight || document.documentElement.clientHeight) - scrollOffset ||
+		elementTop <= -scrollOffset
+	)
+		return false;
+	else return true;
 };
 
 const scrollAnimManager = () => {
-	gameItem.forEach((el) => {
+	animatedItem.forEach((el) => {
 		if (elementInView(el, 100)) {
 			displayScrolledElement(el);
-		}
+		} else notInView(el);
 	});
 };
 
 const displayScrolledElement = (el) => {
 	if (el.classList.contains('anim')) {
 		el.classList.add('fade-animated');
+	}
+	if (el.classList.contains('left-anim')) {
+		el.classList.add('left-animated');
+	}
+	if (el.classList.contains('right-anim')) {
+		el.classList.add('right-animated');
+	}
+	if (el.classList.contains('bottom-anim')) {
+		el.classList.add('bottom-animated');
+	}
+};
+const notInView = (el) => {
+	if (el.classList.contains('fade-anim')) {
+		el.classList.remove('fade-animated');
+	}
+	if (el.classList.contains('left-anim')) {
+		el.classList.remove('left-animated');
+	}
+	if (el.classList.contains('right-anim')) {
+		el.classList.remove('right-animated');
+	}
+	if (el.classList.contains('bottom-anim')) {
+		el.classList.remove('bottom-animated');
 	}
 };
 

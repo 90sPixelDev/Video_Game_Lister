@@ -126,6 +126,19 @@ html {
 					margin: 0 0 5em 0;
 					padding: 1em 2em 1em 2em;
 					border-radius: 0 5em 5em 0;
+
+					animation: leftSlide 1s ease-out forwards;
+
+					@keyframes leftSlide {
+						0% {
+							opacity: 0;
+							transform: translateX(-70vw);
+						}
+						100% {
+							opacity: 100%;
+							transform: translateX(0);
+						}
+					}
 				}
 				.first-cover {
 					float: right;
@@ -133,6 +146,23 @@ html {
 					margin: 0 0 5em 0;
 					padding: 1em 2em 1em 2em;
 					border-radius: 5em 0 0 5em;
+
+					animation: rightSlide 2s ease-out forwards;
+
+					@keyframes rightSlide {
+						0% {
+							opacity: 0;
+							transform: translateX(50vw);
+						}
+						50% {
+							opacity: 0;
+							transform: translateX(50vw);
+						}
+						100% {
+							opacity: 100%;
+							transform: translateX(0);
+						}
+					}
 				}
 
 				h2 {
@@ -152,6 +182,13 @@ html {
 					span {
 						font-weight: 600;
 						color: red;
+					}
+					.got-you {
+						opacity: 0;
+						transition: all 2s;
+					}
+					.fade-animated {
+						opacity: 100%;
 					}
 				}
 			}
@@ -196,7 +233,8 @@ html {
 					text-align: center;
 					margin-bottom: 1em;
 					background-color: rgba(0, 0, 0, 0.25);
-					opacity: 0;
+					opacity: 10%;
+					transform: scale(0.75);
 					transition: all 1s;
 					img {
 						box-shadow: 0 0 1em rgba(0, 0, 0, 0.5);
@@ -206,6 +244,7 @@ html {
 				}
 				.fade-animated {
 					opacity: 100%;
+					transform: scale(1);
 				}
 			}
 		}
@@ -281,6 +320,7 @@ html {
 
 			.to-top {
 				position: fixed;
+				z-index: 1;
 				left: 2vw;
 				bottom: 5vh;
 				font-size: 4em;
@@ -289,6 +329,37 @@ html {
 				border-radius: 50%;
 				width: 1.5em;
 				border: none;
+			}
+			#social-media {
+				width: 100%;
+				padding-bottom: 1em;
+
+				.sm-parent {
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					transform: translateX(-20vw);
+					opacity: 0;
+					gap: 2em;
+
+					transition: all 1s;
+					#github {
+						background: url('../images/github-social-logo.png') no-repeat center;
+						background-size: contain;
+						height: 2.5em;
+						width: 2.5em;
+					}
+					#linkedIn {
+						background: url('../images/Linkedin-logo-on-transparent-Background-PNG-.png')
+							no-repeat center;
+						height: 2.5em;
+						width: 2.5em;
+					}
+				}
+				.left-animated {
+					opacity: 100%;
+					transform: translateX(0);
+				}
 			}
 			a {
 				display: block;

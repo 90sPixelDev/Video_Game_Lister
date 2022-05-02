@@ -100,6 +100,32 @@ html body {
     margin: 0 0 5em 0;
     padding: 1em 2em 1em 2em;
     border-radius: 0 5em 5em 0;
+    -webkit-animation: leftSlide 1s ease-out forwards;
+            animation: leftSlide 1s ease-out forwards;
+  }
+  @-webkit-keyframes leftSlide {
+    0% {
+      opacity: 0;
+      -webkit-transform: translateX(-70vw);
+              transform: translateX(-70vw);
+    }
+    100% {
+      opacity: 100%;
+      -webkit-transform: translateX(0);
+              transform: translateX(0);
+    }
+  }
+  @keyframes leftSlide {
+    0% {
+      opacity: 0;
+      -webkit-transform: translateX(-70vw);
+              transform: translateX(-70vw);
+    }
+    100% {
+      opacity: 100%;
+      -webkit-transform: translateX(0);
+              transform: translateX(0);
+    }
   }
   main .home .first-cover {
     float: right;
@@ -107,6 +133,42 @@ html body {
     margin: 0 0 5em 0;
     padding: 1em 2em 1em 2em;
     border-radius: 5em 0 0 5em;
+    -webkit-animation: rightSlide 2s ease-out forwards;
+            animation: rightSlide 2s ease-out forwards;
+  }
+  @-webkit-keyframes rightSlide {
+    0% {
+      opacity: 0;
+      -webkit-transform: translateX(50vw);
+              transform: translateX(50vw);
+    }
+    50% {
+      opacity: 0;
+      -webkit-transform: translateX(50vw);
+              transform: translateX(50vw);
+    }
+    100% {
+      opacity: 100%;
+      -webkit-transform: translateX(0);
+              transform: translateX(0);
+    }
+  }
+  @keyframes rightSlide {
+    0% {
+      opacity: 0;
+      -webkit-transform: translateX(50vw);
+              transform: translateX(50vw);
+    }
+    50% {
+      opacity: 0;
+      -webkit-transform: translateX(50vw);
+              transform: translateX(50vw);
+    }
+    100% {
+      opacity: 100%;
+      -webkit-transform: translateX(0);
+              transform: translateX(0);
+    }
   }
   main .home h2 {
     text-align: center;
@@ -126,6 +188,14 @@ html body {
   main .home .question-p span {
     font-weight: 600;
     color: red;
+  }
+  main .home .question-p .got-you {
+    opacity: 0;
+    -webkit-transition: all 2s;
+    transition: all 2s;
+  }
+  main .home .question-p .fade-animated {
+    opacity: 100%;
   }
   main .top {
     margin-top: 3em;
@@ -187,7 +257,9 @@ html body {
     text-align: center;
     margin-bottom: 1em;
     background-color: rgba(0, 0, 0, 0.25);
-    opacity: 0;
+    opacity: 10%;
+    -webkit-transform: scale(0.75);
+            transform: scale(0.75);
     -webkit-transition: all 1s;
     transition: all 1s;
   }
@@ -199,6 +271,8 @@ html body {
   }
   main .container .fade-animated {
     opacity: 100%;
+    -webkit-transform: scale(1);
+            transform: scale(1);
   }
   .btn-holder {
     background: -webkit-gradient(linear, left top, right top, from(transparent), color-stop(rgba(0, 0, 0, 0.5)), to(transparent));
@@ -273,6 +347,7 @@ html body {
   }
   footer .to-top {
     position: fixed;
+    z-index: 1;
     left: 2vw;
     bottom: 5vh;
     font-size: 4em;
@@ -281,6 +356,43 @@ html body {
     border-radius: 50%;
     width: 1.5em;
     border: none;
+  }
+  footer #social-media {
+    width: 100%;
+    padding-bottom: 1em;
+  }
+  footer #social-media .sm-parent {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-transform: translateX(-20vw);
+            transform: translateX(-20vw);
+    opacity: 0;
+    gap: 2em;
+    -webkit-transition: all 1s;
+    transition: all 1s;
+  }
+  footer #social-media .sm-parent #github {
+    background: url("../images/github-social-logo.png") no-repeat center;
+    background-size: contain;
+    height: 2.5em;
+    width: 2.5em;
+  }
+  footer #social-media .sm-parent #linkedIn {
+    background: url("../images/Linkedin-logo-on-transparent-Background-PNG-.png") no-repeat center;
+    height: 2.5em;
+    width: 2.5em;
+  }
+  footer #social-media .left-animated {
+    opacity: 100%;
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
   }
   footer a {
     display: block;
