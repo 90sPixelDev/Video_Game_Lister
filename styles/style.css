@@ -72,6 +72,8 @@ html body {
     display: flex;
     background-color: #3c3744;
     text-align: center;
+    text-decoration: none;
+    margin: 3em 0;
     width: 30vw;
     height: 30vw;
     padding: 1em;
@@ -79,22 +81,13 @@ html body {
   .welcome .main-section .mobile-land-container .flex-holder .info:hover p {
     color: red;
   }
+  .welcome .main-section .mobile-land-container .flex-holder .info h2 {
+    margin-left: 1em;
+  }
   .welcome #item-input {
     display: block;
     margin: auto;
     color: black;
-  }
-  .info {
-    margin-top: 3em;
-  }
-  .info h2 {
-    margin-left: 1em;
-  }
-  .info .used-container {
-    margin-top: 1em;
-    width: 100%;
-    background-color: #3c3744;
-    padding: 2em;
   }
   main .home h1 {
     text-align: center;
@@ -251,6 +244,24 @@ html body {
     width: 5em;
     accent-color: black;
   }
+  .tech {
+    margin-top: 1em;
+    width: 100%;
+    background-color: #3c3744;
+    padding: 2em;
+  }
+  .tech details {
+    max-width: 80%;
+  }
+  .tech details summary {
+    color: rgba(255, 255, 255, 0.5);
+  }
+  .tech details[open] > summary {
+    color: white;
+  }
+  .tech details[open] p {
+    margin: 0 0 0.5em 1em;
+  }
   footer {
     margin-top: 3em;
     padding: 1em 0;
@@ -262,12 +273,14 @@ html body {
   }
   footer .to-top {
     position: fixed;
-    left: 1vw;
+    left: 2vw;
     bottom: 5vh;
-    font-size: 5em;
+    font-size: 4em;
+    color: rgba(255, 255, 255, 0.5);
     background-color: rgba(0, 0, 0, 0.5);
     border-radius: 50%;
     width: 1.5em;
+    border: none;
   }
   footer a {
     display: block;
@@ -355,7 +368,7 @@ html body {
   .info h2 {
     margin-left: 1em;
   }
-  .info .used-container {
+  .info .tech {
     margin-top: 2em;
     width: 100%;
     background-color: #3c3744;
