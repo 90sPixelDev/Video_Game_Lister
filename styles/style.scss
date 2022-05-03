@@ -333,7 +333,7 @@ html {
 
 		.tech-stack {
 			h2 {
-				margin-left: 2em;
+				margin-left: 1.5em;
 			}
 			.tech {
 				margin-top: 1em;
@@ -355,6 +355,12 @@ html {
 				details[open] p {
 					margin: 0 0 0.5em 1em;
 				}
+			}
+			p {
+				text-align: center;
+				color: #ffffff85;
+				margin: 3em 1em;
+				font-size: 0.9em;
 			}
 		}
 
