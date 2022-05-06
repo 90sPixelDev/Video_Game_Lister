@@ -378,8 +378,9 @@ html body {
   }
   .tech-stack .tech details[open] p {
     margin: 0 0 0.5em 1em;
+    font-size: 0.9em;
   }
-  .tech-stack p {
+  .tech-stack .extra-detail {
     text-align: center;
     color: #ffffff85;
     margin: 3em 1em;
