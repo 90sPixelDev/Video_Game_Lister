@@ -8,6 +8,7 @@ const options = {
 };
 
 // ALL VARIABLES USED
+const gameItemParent = document.querySelector('.container');
 const gameItem = document.querySelectorAll('.game-item');
 const animatedItem = document.querySelectorAll('.anim');
 const nextPage = document.querySelector('.next-page');
@@ -34,10 +35,68 @@ const screenshotsParent = document.querySelector('.game-screenshots');
 
 const backBtn = document.querySelector('.back-btn');
 
+const searchInput = document.querySelector('.search-game');
+const searchType = document.querySelector('#search-type');
+const searchBtn = document.querySelector('.search-btn');
+const filterType = document.querySelector('#filter-type');
+const filterPlatform = document.querySelector('#filter-platform');
+let filterTagSelected = 'all';
+let filterPlatformSelected = 'all';
+let filteredURL = 'https://free-to-play-games-database.p.rapidapi.com/api/games';
+
 let page = 1;
 
+const tagList = [
+	'all',
+	'mmorpg',
+	'shooter',
+	'strategy',
+	'moba',
+	'racing',
+	'sports',
+	'social',
+	'sandbox',
+	'open-world',
+	'survival',
+	'pvp',
+	'pve',
+	'pixel',
+	'voxel',
+	'zombie',
+	'turn-based',
+	'first-person',
+	'third-Person',
+	'top-down',
+	'tank',
+	'space',
+	'sailing',
+	'side-scroller',
+	'superhero',
+	'permadeath',
+	'card',
+	'battle-royale',
+	'mmo',
+	'mmofps',
+	'mmotps',
+	'3d',
+	'2d',
+	'anime',
+	'fantasy',
+	'sci-fi',
+	'fighting',
+	'action-rpg',
+	'action',
+	'military',
+	'martial-arts',
+	'flight',
+	'low-spec',
+	'tower-defense',
+	'horror',
+	'mmorts',
+];
+
 // LOADING THE VISUAL DATA DYNAMICALLY ON BROWSE VIEW
-const loadGameList = (data) => {
+const loadGameData = (data) => {
 	if (gameItem === undefined) return;
 	let lastIndex;
 	let startIndex;
@@ -48,13 +107,27 @@ const loadGameList = (data) => {
 	startIndex = (page - 1) * 15;
 	lastIndex = 15 * page;
 	let titleArr = [];
+	let gameItems = [];
 	let count = 0;
-	console.log('startIndex: ' + startIndex);
-	console.log('lastIndex: ' + lastIndex);
 	for (let i = startIndex; i < lastIndex; i++) {
+		// const createGameItem = document.createElement('button');
+		// createGameItem.classList.add('game-item');
+		// createGameItem.classList.add('anim');
+		// createGameItem.classList.add('fade-anim');
+		// gameItemParent.append(createGameItem);
+
+		// gameItems.push(createGameItem);
+
 		let title = data[i].title;
 		let imgURL = data[i].thumbnail;
 		let gameID = data[i].id;
+
+		// titleArr.push(title);
+		// gameItems[count].innerText = titleArr[count];
+		// createGameImg(gameItems[count], imgURL);
+		// titleSize(gameItems[count], titleArr[count]);
+		// gameItems[count].id = gameID;
+
 		titleArr.push(title);
 		gameItem[count].innerText = titleArr[count];
 		createGameImg(gameItem[count], imgURL);
@@ -62,6 +135,7 @@ const loadGameList = (data) => {
 		gameItem[count].id = gameID;
 		count++;
 	}
+
 	pageNum[0].innerText = page;
 	pageNum[1].innerText = page;
 
@@ -70,18 +144,21 @@ const loadGameList = (data) => {
 	});
 };
 
+// CREATING, APPENDING, AND SETTING SRC OF THE GAME THUMBNAIL
 const createGameImg = (el, imgURL) => {
 	const img = document.createElement('img');
 	img.src = imgURL;
 	el.append(img);
 };
 
+// ADJUSTING FONT SIZE DEPENDING ON LENGTH OF TITLE OF GAME
 const titleSize = (gameItem, gameTitle) => {
 	if (gameTitle.length > 25) gameItem.style.fontSize = '10px';
-	if (gameTitle.length > 20) gameItem.style.fontSize = '12px';
+	else if (gameTitle.length > 20) gameItem.style.fontSize = '12px';
 	else if (gameTitle.length > 15) gameItem.style.fontSize = '15px';
 };
 
+// CHECKING API CALL IS OK
 const checkStatus = (response) => {
 	if (!response.ok) throw new Error('Something went wrong');
 	console.log('Status: OK');
@@ -91,38 +168,38 @@ const checkStatus = (response) => {
 // LOADING INITIAL DATA
 document.addEventListener('DOMContentLoaded', () => {
 	if (window.location.pathname === '/browse.html') {
-		loadInitialGames();
+		loadGameList();
 
 		// CHANGING PAGES AND LOADING DATA
 		nextPage.addEventListener('click', () => {
 			nextPageFunc();
-			fetch('https://free-to-play-games-database.p.rapidapi.com/api/games', options)
-				.then(checkStatus)
-				.then(loadGameList);
+			loadGameList();
 		});
 		nextPageB.addEventListener('click', () => {
 			nextPageFunc();
-			fetch('https://free-to-play-games-database.p.rapidapi.com/api/games', options)
-				.then(checkStatus)
-				.then(loadGameList);
+			loadGameList();
 		});
 		prevPage.addEventListener('click', () => {
 			prevPageFunc();
-			fetch('https://free-to-play-games-database.p.rapidapi.com/api/games', options)
-				.then(checkStatus)
-				.then(loadGameList);
+			loadGameList();
 		});
 		prevPageB.addEventListener('click', () => {
 			prevPageFunc();
-			fetch('https://free-to-play-games-database.p.rapidapi.com/api/games', options)
-				.then(checkStatus)
-				.then(loadGameList);
+			loadGameList();
 		});
 
 		gameItem.forEach((el) => {
 			el.addEventListener('click', function () {
 				loadGameSelected(this);
 			});
+		});
+
+		// AUTOMATICALLY CREATING THE CATEGORY SELECT LIST OR I WOULD TAKE OVER 10 MIN JUST HARD CODING IT IN
+		tagList.forEach((tag) => {
+			const createOption = document.createElement('option');
+			filterType.append(createOption);
+			createOption.value = tag;
+			createOption.innerText = tag;
 		});
 
 		backBtn.addEventListener('click', () => {
@@ -134,19 +211,60 @@ document.addEventListener('DOMContentLoaded', () => {
 		});
 	}
 });
-const loadInitialGames = () => {
-	fetch('https://free-to-play-games-database.p.rapidapi.com/api/games', options)
+const loadGameList = () => {
+	console.log('Filter by: ' + filterTagSelected);
+	console.log('Platform: ' + filterPlatformSelected);
+	fetch(filteredURL, options)
 		.then(checkStatus)
-		.then((data) => {
-			console.log(data);
-			return data;
-		})
-		.then(loadGameList)
+		.then(loadGameData)
 		.catch((err) => console.error(err));
 };
 
+// FILTERING AND ADJUSTING GAME LIST SHOWING FUNCTIONS
+
+filterType.addEventListener('change', function () {
+	page = 1;
+	if (this.value === 'all') {
+		filteredURL = `https://free-to-play-games-database.p.rapidapi.com/api/games?platform=${filterPlatformSelected}`;
+		loadGameList();
+	} else if (this.value === 'all' && filterPlatformSelected === 'all') {
+		filteredURL = 'https://free-to-play-games-database.p.rapidapi.com/api/games';
+		loadGameList();
+	} else if (filterPlatformSelected === 'all') {
+		console.log('Changed Category only!');
+		filterTagSelected = this.value;
+		console.log(filterTagSelected);
+		filteredURL = `https://free-to-play-games-database.p.rapidapi.com/api/games?category=${this.value}`;
+		loadGameList();
+	} else {
+		filterTagSelected = this.value;
+		filteredURL = `https://free-to-play-games-database.p.rapidapi.com/api/games?platform=${filterPlatformSelected}&category=${this.value}`;
+		loadGameList();
+	}
+});
+filterPlatform.addEventListener('change', function () {
+	console.log('Platform: ' + this.value);
+	page = 1;
+	if (this.value === 'all') {
+		filteredURL = `https://free-to-play-games-database.p.rapidapi.com/api/games?category=${filterTagSelected}`;
+		loadGameList();
+	} else if (this.value === 'all' && filterTagSelected === 'all') {
+		filteredURL = 'https://free-to-play-games-database.p.rapidapi.com/api/games';
+		loadGameList();
+	} else if (filterTagSelected === 'all') {
+		filterPlatformSelected = this.value;
+		filteredURL = `https://free-to-play-games-database.p.rapidapi.com/api/games?platform=${this.value}`;
+		loadGameList();
+	} else {
+		filterPlatformSelected = this.value;
+		filteredURL = `https://free-to-play-games-database.p.rapidapi.com/api/games?platform=${this.value}&category=${filterTagSelected}`;
+		loadGameList();
+	}
+});
+
+// SHOW THE DETAILED INFO OF GAME SELECTED
 const loadGameSelected = (el) => {
-	console.log('Pressed!');
+	console.log('Game Selected!');
 	topElements.style.display = 'none';
 	gameList.style.display = 'none';
 	bottomElements.style.display = 'none';
@@ -189,14 +307,13 @@ const loadGameInfo = function (el) {
 };
 
 const nextPageFunc = () => {
-	console.log('Pressed the next page!');
 	page++;
 	console.log('Page: ' + page);
 };
 const prevPageFunc = () => {
 	if (page === 1) return;
-	console.log('Pressed the previous page!');
 	page--;
+	console.log('Page: ' + page);
 };
 
 // FADE ANIMATION FUNCTIONS
@@ -254,10 +371,6 @@ window.addEventListener('scroll', () => {
 });
 
 // 	SCROLL TO TOP FUNCTIONS
-const scrollTop = () => {
-	window.scrollTo({ top: 0, behavior: 'smooth' });
-};
-
 toTop.addEventListener('click', () => {
-	scrollTop();
+	window.scrollTo({ top: 0, behavior: 'smooth' });
 });

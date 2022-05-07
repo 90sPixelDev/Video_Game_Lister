@@ -70,14 +70,28 @@
 					<p>1</p>
 				</div>
 				<section class="search-area">
-					<label for="search-game">Search:</label>
-					<input type="text" name="search-game" class="search-game" />
-					<select name="search-type" id="search-type">
-						<option value="Title">Title</option>
-						<option value="Genre">Genre</option>
-						<option value="Developer">Developer</option>
-						<option value="Publisher">Publisher</option>
-					</select>
+					<div class="search">
+						<label for="search-game">Search:</label>
+						<input type="text" name="search-game" class="search-game" />
+						<select name="search-type" id="search-type">
+							<option value="title">Title</option>
+							<option value="genre">Genre</option>
+							<option value="developer">Developer</option>
+							<option value="publisher">Publisher</option>
+						</select>
+						<label for="search-btn"></label>
+						<button name="search-btn" class="search-btn">></button>
+					</div>
+					<div class="filter-area">
+						<label for="filter-type">Filter by:</label>
+						<select name="filter-type" id="filter-type"></select>
+						<label for="filter-platform">Platform:</label>
+						<select name="filter-platform" id="filter-platform">
+							<option value="all">all</option>
+							<option value="pc">Windows PC</option>
+							<option value="browser">Browser Web</option>
+						</select>
+					</div>
 				</section>
 			</section>
 
