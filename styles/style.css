@@ -289,13 +289,13 @@ html body {
         -ms-flex-direction: column;
             flex-direction: column;
   }
-  main .games-margin {
+  main .games .games-margin {
     width: 90%;
     max-width: 1700px;
     margin: auto;
     background-color: rgba(0, 0, 0, 0.25);
   }
-  main .games-margin .container {
+  main .games .games-margin .container {
     width: 97%;
     padding: 1.5em 0;
     gap: 2vw;
@@ -311,10 +311,13 @@ html body {
     -webkit-box-align: start;
         -ms-flex-align: start;
             align-items: flex-start;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
   }
-  main .games-margin .container .game-item {
+  main .games .games-margin .container .game-item {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -325,7 +328,9 @@ html body {
     -webkit-box-pack: justify;
         -ms-flex-pack: justify;
             justify-content: space-between;
-    text-align: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
     background-color: rgba(0, 0, 0, 0.25);
     opacity: 10%;
     -webkit-transform: scale(0.75);
@@ -334,12 +339,12 @@ html body {
     -webkit-transition: all 1s;
     transition: all 1s;
   }
-  main .games-margin .container .game-item img {
+  main .games .games-margin .container .game-item img {
     -webkit-box-shadow: 0 0 1em rgba(0, 0, 0, 0.5);
             box-shadow: 0 0 1em rgba(0, 0, 0, 0.5);
     width: 20vw;
   }
-  main .games-margin .container .fade-animated {
+  main .games .games-margin .container .fade-animated {
     opacity: 100%;
     -webkit-transform: scale(1);
             transform: scale(1);
@@ -373,7 +378,11 @@ html body {
     height: fit-content;
   }
   main .game .game-wrapper .game-img-container .game-img {
-    width: 27vw;
+    display: block;
+    width: 90%;
+    margin: auto;
+    -webkit-box-shadow: 0 0 5em rgba(0, 0, 0, 0.5);
+            box-shadow: 0 0 5em rgba(0, 0, 0, 0.5);
   }
   main .game .game-wrapper .basic-info {
     -ms-grid-column: 2;
@@ -584,23 +593,20 @@ html body {
 }
 
 @media all and (min-width: 897px) {
-  .wrapper-img {
+  .home .wrapper-img {
     display: block;
     height: 100%;
   }
-  .title-line {
+  .home .title-line {
     width: 300px;
   }
-  img {
-    border: 1px solid rgba(0, 0, 0, 0.5);
-  }
-  figure {
+  .home figure {
     display: -ms-grid;
     display: grid;
     place-items: center;
     margin-top: 10vh;
   }
-  figure img {
+  .home figure img {
     width: 100%;
     max-width: 500px;
     -webkit-box-shadow: 0 0 3em rgba(0, 0, 0, 0.5);
@@ -613,13 +619,62 @@ html body {
   main .games .games-margin .container .game-item img {
     width: 20vw;
   }
+  main .game .game-wrapper .game-img-container .game-img {
+    max-width: 430px;
+  }
+  main .game .game-wrapper .game-screenshots .game-screenshot {
+    max-width: 430px;
+  }
+}
+
+@media all and (max-width: 896px) {
+  main .game {
+    margin: 5vh 0;
+  }
+  main .game .game-wrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+    gap: 3vh;
+  }
+  main .game .game-wrapper .game-img-container {
+    margin-top: 3vh;
+  }
+  main .game .game-wrapper .game-img-container .game-img {
+    display: block;
+    width: 90%;
+    margin: auto;
+  }
+  main .game .game-wrapper .basic-info {
+    margin: auto;
+    width: 85%;
+  }
+  main .game .game-wrapper .game-screenshots {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    width: 85%;
+    height: 300px;
+    margin: auto;
+  }
+  main .game .game-wrapper .game-screenshots .game-screenshot {
+    width: 90%;
+  }
 }
 
 @media all and (min-width: 416px) and (max-width: 896px) {
-  .wrapper-img {
+  .home .wrapper-img {
     height: 75vh;
   }
-  .title-line {
+  .home .title-line {
     width: 50%;
     max-width: 500px;
   }
@@ -629,9 +684,6 @@ html body {
 }
 
 @media all and (min-width: 637px) and (max-width: 1100px) {
-  .btn-holder {
-    width: 100%;
-  }
   main .games .games-margin .container .game-item img {
     width: 27.5vw;
   }
