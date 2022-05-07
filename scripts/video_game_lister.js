@@ -202,6 +202,46 @@ document.addEventListener('DOMContentLoaded', () => {
 			createOption.innerText = tag;
 		});
 
+		filterType.addEventListener('change', function () {
+			page = 1;
+			if (this.value === 'all') {
+				filteredURL = `https://free-to-play-games-database.p.rapidapi.com/api/games?platform=${filterPlatformSelected}`;
+				loadGameList();
+			} else if (this.value === 'all' && filterPlatformSelected === 'all') {
+				filteredURL = 'https://free-to-play-games-database.p.rapidapi.com/api/games';
+				loadGameList();
+			} else if (filterPlatformSelected === 'all') {
+				console.log('Changed Category only!');
+				filterTagSelected = this.value;
+				console.log(filterTagSelected);
+				filteredURL = `https://free-to-play-games-database.p.rapidapi.com/api/games?category=${this.value}`;
+				loadGameList();
+			} else {
+				filterTagSelected = this.value;
+				filteredURL = `https://free-to-play-games-database.p.rapidapi.com/api/games?platform=${filterPlatformSelected}&category=${this.value}`;
+				loadGameList();
+			}
+		});
+		filterPlatform.addEventListener('change', function () {
+			console.log('Platform: ' + this.value);
+			page = 1;
+			if (this.value === 'all') {
+				filteredURL = `https://free-to-play-games-database.p.rapidapi.com/api/games?category=${filterTagSelected}`;
+				loadGameList();
+			} else if (this.value === 'all' && filterTagSelected === 'all') {
+				filteredURL = 'https://free-to-play-games-database.p.rapidapi.com/api/games';
+				loadGameList();
+			} else if (filterTagSelected === 'all') {
+				filterPlatformSelected = this.value;
+				filteredURL = `https://free-to-play-games-database.p.rapidapi.com/api/games?platform=${this.value}`;
+				loadGameList();
+			} else {
+				filterPlatformSelected = this.value;
+				filteredURL = `https://free-to-play-games-database.p.rapidapi.com/api/games?platform=${this.value}&category=${filterTagSelected}`;
+				loadGameList();
+			}
+		});
+
 		backBtn.addEventListener('click', () => {
 			topElements.style.display = 'block';
 			gameList.style.display = 'flex';
@@ -221,46 +261,10 @@ const loadGameList = () => {
 };
 
 // FILTERING AND ADJUSTING GAME LIST SHOWING FUNCTIONS
-
-filterType.addEventListener('change', function () {
-	page = 1;
-	if (this.value === 'all') {
-		filteredURL = `https://free-to-play-games-database.p.rapidapi.com/api/games?platform=${filterPlatformSelected}`;
-		loadGameList();
-	} else if (this.value === 'all' && filterPlatformSelected === 'all') {
-		filteredURL = 'https://free-to-play-games-database.p.rapidapi.com/api/games';
-		loadGameList();
-	} else if (filterPlatformSelected === 'all') {
-		console.log('Changed Category only!');
-		filterTagSelected = this.value;
-		console.log(filterTagSelected);
-		filteredURL = `https://free-to-play-games-database.p.rapidapi.com/api/games?category=${this.value}`;
-		loadGameList();
-	} else {
-		filterTagSelected = this.value;
-		filteredURL = `https://free-to-play-games-database.p.rapidapi.com/api/games?platform=${filterPlatformSelected}&category=${this.value}`;
-		loadGameList();
-	}
-});
-filterPlatform.addEventListener('change', function () {
-	console.log('Platform: ' + this.value);
-	page = 1;
-	if (this.value === 'all') {
-		filteredURL = `https://free-to-play-games-database.p.rapidapi.com/api/games?category=${filterTagSelected}`;
-		loadGameList();
-	} else if (this.value === 'all' && filterTagSelected === 'all') {
-		filteredURL = 'https://free-to-play-games-database.p.rapidapi.com/api/games';
-		loadGameList();
-	} else if (filterTagSelected === 'all') {
-		filterPlatformSelected = this.value;
-		filteredURL = `https://free-to-play-games-database.p.rapidapi.com/api/games?platform=${this.value}`;
-		loadGameList();
-	} else {
-		filterPlatformSelected = this.value;
-		filteredURL = `https://free-to-play-games-database.p.rapidapi.com/api/games?platform=${this.value}&category=${filterTagSelected}`;
-		loadGameList();
-	}
-});
+// searchBtn.addEventListener('click', function() {
+// 	 let searchCat = searchType.value;
+// 	 filteredURL = 'https://free-to-play-games-database.p.rapidapi.com/api/games';
+// })
 
 // SHOW THE DETAILED INFO OF GAME SELECTED
 const loadGameSelected = (el) => {
