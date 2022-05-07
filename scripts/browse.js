@@ -22,12 +22,18 @@ const gameList = document.querySelector('.games');
 const bottomElements = document.querySelector('.bottom');
 const gameElements = document.querySelector('.game');
 
+const gameInfoImg = document.querySelector('.game-img');
 const gameInfoTitle = document.querySelector('.game-title');
 const gameInfoGenre = document.querySelector('.genre');
 const gameInfoPlatform = document.querySelector('.platform');
 const gameInfoDeveloper = document.querySelector('.developer');
 const gameInfoReleaseDate = document.querySelector('.release-date');
 const gameInfoDescription = document.querySelector('.description');
+const gameScreenshots = document.querySelectorAll('.game-screenshot');
+const screenshotsParent = document.querySelector('.game-screenshots');
+
+const backBtn = document.querySelector('.back-btn');
+
 let page = 1;
 
 // LOADING THE VISUAL DATA DYNAMICALLY ON BROWSE VIEW
@@ -71,8 +77,9 @@ const createGameImg = (el, imgURL) => {
 };
 
 const titleSize = (gameItem, gameTitle) => {
-	if (gameTitle.length > 15) gameItem.style.fontSize = '15px';
-	else if (gameTitle.length > 20) gameItem.style.fontSize = '10px';
+	if (gameTitle.length > 25) gameItem.style.fontSize = '10px';
+	if (gameTitle.length > 20) gameItem.style.fontSize = '12px';
+	else if (gameTitle.length > 15) gameItem.style.fontSize = '15px';
 };
 
 const checkStatus = (response) => {
@@ -114,7 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 		gameItem.forEach((el) => {
 			el.addEventListener('click', function () {
-				loadGameSection(this);
+				loadGameSelected(this);
 			});
 		});
 	}
@@ -129,7 +136,8 @@ const loadInitialGames = () => {
 		.then(loadGameList)
 		.catch((err) => console.error(err));
 };
-const loadGameSection = (el) => {
+
+const loadGameSelected = (el) => {
 	console.log('Pressed!');
 	topElements.style.display = 'none';
 	gameList.style.display = 'none';
@@ -140,6 +148,8 @@ const loadGameSection = (el) => {
 };
 
 const gameDetails = (data) => {
+	gameInfoImg.src = data.thumbnail;
+
 	gameInfoTitle.innerText = data.title;
 	gameInfoGenre.innerText = data.genre;
 	gameInfoPlatform.innerText = data.platform;
@@ -147,12 +157,20 @@ const gameDetails = (data) => {
 	gameInfoReleaseDate.innerText = data.release_date;
 	gameInfoDescription.innerText = data.short_description;
 
-	console.log(data.title);
+	console.log(data.screenshots.length);
+
+	for (let i = 0; i < data.screenshots.length; i++) {
+		let createImg = document.createElement('img');
+		screenshotsParent.append(createImg);
+		let screenshot = data.screenshots[i].image;
+		createImg.src = screenshot;
+		createImg.classList.add('game-screenshot');
+	}
+	return data;
 };
 
 const loadGameInfo = function (el) {
 	let elementId = el.id;
-	console.log('Game ID: ' + elementId);
 	fetch(`https://free-to-play-games-database.p.rapidapi.com/api/game?id=${elementId}`, options)
 		.then(checkStatus)
 		.then((data) => {
@@ -161,6 +179,14 @@ const loadGameInfo = function (el) {
 		})
 		.then(gameDetails);
 };
+
+backBtn.addEventListener('click', () => {
+	topElements.style.display = 'block';
+	gameList.style.display = 'flex';
+	bottomElements.style.display = 'flex';
+
+	gameElements.style.display = 'none';
+});
 
 const nextPageFunc = () => {
 	console.log('Pressed the next page!');
