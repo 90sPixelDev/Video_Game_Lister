@@ -108,6 +108,15 @@ html body {
             box-shadow: 0 0 5em black;
     border-bottom: 1px solid black;
   }
+  main .game-wrapper {
+    width: 100%;
+    display: -ms-grid;
+    display: grid;
+  }
+  main .game-wrapper figure {
+    width: 30vh;
+    height: 20vh;
+  }
   main .home h1 {
     text-align: center;
     margin: 1.5em 0 0.25em 0;
@@ -313,13 +322,13 @@ html body {
     -webkit-box-pack: justify;
         -ms-flex-pack: justify;
             justify-content: space-between;
-    list-style: none;
     text-align: center;
     margin-bottom: 1em;
     background-color: rgba(0, 0, 0, 0.25);
     opacity: 10%;
     -webkit-transform: scale(0.75);
             transform: scale(0.75);
+    border: none;
     -webkit-transition: all 1s;
     transition: all 1s;
   }
@@ -365,6 +374,9 @@ html body {
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
+  }
+  .bottom .btn-holder {
+    width: 100%;
   }
   .bottom input {
     background-color: rgba(0, 0, 0, 0.5);

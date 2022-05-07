@@ -16,9 +16,21 @@ const prevPage = document.querySelector('.prev-page');
 const prevPageB = document.querySelector('#prev-page');
 const pageNum = document.querySelectorAll('.page-holder p');
 const toTop = document.querySelector('.to-top');
+
+const topElements = document.querySelector('.top');
+const gameList = document.querySelector('.games');
+const bottomElements = document.querySelector('.bottom');
+const gameElements = document.querySelector('.game');
+
+const gameInfoTitle = document.querySelector('.game-title');
+const gameInfoGenre = document.querySelector('.genre');
+const gameInfoPlatform = document.querySelector('.platform');
+const gameInfoDeveloper = document.querySelector('.developer');
+const gameInfoReleaseDate = document.querySelector('.release-date');
+const gameInfoDescription = document.querySelector('.description');
 let page = 1;
 
-// LOADING THE VISUAL DATA DYNAMICALLY
+// LOADING THE VISUAL DATA DYNAMICALLY ON BROWSE VIEW
 const loadGameList = (data) => {
 	if (gameItem === undefined) return;
 	let lastIndex;
@@ -36,10 +48,12 @@ const loadGameList = (data) => {
 	for (let i = startIndex; i < lastIndex; i++) {
 		let title = data[i].title;
 		let imgURL = data[i].thumbnail;
+		let gameID = data[i].id;
 		titleArr.push(title);
 		gameItem[count].innerText = titleArr[count];
 		createGameImg(gameItem[count], imgURL);
 		titleSize(gameItem[count], titleArr[count]);
+		gameItem[count].id = gameID;
 		count++;
 	}
 	pageNum[0].innerText = page;
@@ -50,8 +64,6 @@ const loadGameList = (data) => {
 	});
 };
 
-const playPageAnim = () => {};
-
 const createGameImg = (el, imgURL) => {
 	const img = document.createElement('img');
 	img.src = imgURL;
@@ -59,7 +71,6 @@ const createGameImg = (el, imgURL) => {
 };
 
 const titleSize = (gameItem, gameTitle) => {
-	let textSize = window.getComputedStyle(gameItem, null).getPropertyValue('font-size');
 	if (gameTitle.length > 15) gameItem.style.fontSize = '15px';
 	else if (gameTitle.length > 20) gameItem.style.fontSize = '10px';
 };
@@ -71,42 +82,85 @@ const checkStatus = (response) => {
 };
 
 // LOADING INITIAL DATA
-fetch('https://free-to-play-games-database.p.rapidapi.com/api/games', options)
-	.then(checkStatus)
-	.then((data) => {
-		console.log(data);
-		return data;
-	})
-	.then(loadGameList)
-	.catch((err) => console.error(err));
+document.addEventListener('DOMContentLoaded', () => {
+	if (window.location.pathname === '/browse.html') {
+		loadInitialGames();
 
-// CHANGING PAGES AND LOADING DATA
-nextPage.addEventListener('click', () => {
-	nextPageFunc();
+		// CHANGING PAGES AND LOADING DATA
+		nextPage.addEventListener('click', () => {
+			nextPageFunc();
+			fetch('https://free-to-play-games-database.p.rapidapi.com/api/games', options)
+				.then(checkStatus)
+				.then(loadGameList);
+		});
+		nextPageB.addEventListener('click', () => {
+			nextPageFunc();
+			fetch('https://free-to-play-games-database.p.rapidapi.com/api/games', options)
+				.then(checkStatus)
+				.then(loadGameList);
+		});
+		prevPage.addEventListener('click', () => {
+			prevPageFunc();
+			fetch('https://free-to-play-games-database.p.rapidapi.com/api/games', options)
+				.then(checkStatus)
+				.then(loadGameList);
+		});
+		prevPageB.addEventListener('click', () => {
+			prevPageFunc();
+			fetch('https://free-to-play-games-database.p.rapidapi.com/api/games', options)
+				.then(checkStatus)
+				.then(loadGameList);
+		});
+
+		gameItem.forEach((el) => {
+			el.addEventListener('click', function () {
+				loadGameSection(this);
+			});
+		});
+	}
+});
+const loadInitialGames = () => {
 	fetch('https://free-to-play-games-database.p.rapidapi.com/api/games', options)
 		.then(checkStatus)
-		.then(loadGameList);
-});
-nextPageB.addEventListener('click', () => {
-	nextPageFunc();
-	fetch('https://free-to-play-games-database.p.rapidapi.com/api/games', options)
+		.then((data) => {
+			console.log(data);
+			return data;
+		})
+		.then(loadGameList)
+		.catch((err) => console.error(err));
+};
+const loadGameSection = (el) => {
+	console.log('Pressed!');
+	topElements.style.display = 'none';
+	gameList.style.display = 'none';
+	bottomElements.style.display = 'none';
+
+	gameElements.style.display = 'block';
+	loadGameInfo(el);
+};
+
+const gameDetails = (data) => {
+	gameInfoTitle.innerText = data.title;
+	gameInfoGenre.innerText = data.genre;
+	gameInfoPlatform.innerText = data.platform;
+	gameInfoDeveloper.innerText = data.developer;
+	gameInfoReleaseDate.innerText = data.release_date;
+	gameInfoDescription.innerText = data.short_description;
+
+	console.log(data.title);
+};
+
+const loadGameInfo = function (el) {
+	let elementId = el.id;
+	console.log('Game ID: ' + elementId);
+	fetch(`https://free-to-play-games-database.p.rapidapi.com/api/game?id=${elementId}`, options)
 		.then(checkStatus)
-		.then(loadGameList);
-});
-prevPage.addEventListener('click', () => {
-	prevPageFunc();
-	console.log('Page: ' + page);
-	fetch('https://free-to-play-games-database.p.rapidapi.com/api/games', options)
-		.then(checkStatus)
-		.then(loadGameList);
-});
-prevPageB.addEventListener('click', () => {
-	prevPageFunc();
-	console.log('Page: ' + page);
-	fetch('https://free-to-play-games-database.p.rapidapi.com/api/games', options)
-		.then(checkStatus)
-		.then(loadGameList);
-});
+		.then((data) => {
+			console.log(data);
+			return data;
+		})
+		.then(gameDetails);
+};
 
 const nextPageFunc = () => {
 	console.log('Pressed the next page!');
