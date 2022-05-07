@@ -72,49 +72,6 @@ html {
 		}
 	}
 
-	.welcome {
-		height: calc(100vh - $headerHeightMobPort);
-		padding: 3em 1em 0 1em;
-
-		.main-section {
-			.intro {
-				text-align: center;
-			}
-			.info-box {
-				h2 {
-					margin-top: 2.5em;
-					text-align: center;
-				}
-				.flex-holder {
-					display: flex;
-					justify-content: space-evenly;
-
-					.info {
-						display: flex;
-						background-color: $sectionColorDark;
-						text-align: center;
-						text-decoration: none;
-						margin: 3em 0;
-						width: 30vw;
-						height: fit-content;
-						padding: 1em;
-						&:hover p {
-							color: red;
-						}
-						h2 {
-							margin-left: 1em;
-						}
-					}
-				}
-			}
-		}
-
-		#item-input {
-			display: block;
-			margin: auto;
-			color: black;
-		}
-	}
 	.wrapper-img {
 		position: absolute;
 		z-index: -1;
@@ -131,6 +88,87 @@ html {
 	}
 
 	main {
+		.welcome {
+			height: calc(100vh - $headerHeightMobPort);
+			padding: 3em 1em 0 1em;
+
+			.main-section {
+				.intro {
+					text-align: center;
+				}
+				.info-box {
+					h2 {
+						margin-top: 2.5em;
+						text-align: center;
+					}
+					.flex-holder {
+						display: flex;
+						justify-content: space-evenly;
+
+						.info {
+							display: flex;
+							background-color: $sectionColorDark;
+							text-align: center;
+							text-decoration: none;
+							margin: 3em 0;
+							width: 30vw;
+							height: fit-content;
+							padding: 1em;
+							&:hover p {
+								color: red;
+							}
+							h2 {
+								margin-left: 1em;
+							}
+						}
+					}
+				}
+			}
+
+			#item-input {
+				display: block;
+				margin: auto;
+				color: black;
+			}
+		}
+		.tech-stack {
+			display: flex;
+			flex-direction: column;
+			justify-content: space-evenly;
+			height: 50vh;
+			h2 {
+				margin-left: 1.5em;
+			}
+			.tech {
+				margin-top: 1em;
+				width: 100%;
+				background-color: $sectionColorDark;
+				padding: 2em 0;
+
+				details {
+					max-width: 80%;
+					margin: 0 1em;
+
+					summary {
+						color: rgba(255, 255, 255, 0.5);
+					}
+				}
+				details[open] > summary {
+					color: white;
+				}
+				details[open] p {
+					margin: 0 0 0.5em 1em;
+					font-size: 0.9em;
+				}
+			}
+			.extra-detail {
+				text-align: center;
+				color: #ffffff85;
+				margin: 3em 1em;
+				font-size: 0.9em;
+			}
+		}
+
 		.game-wrapper {
 			width: 100%;
 			display: grid;
@@ -450,40 +488,6 @@ html {
 		}
 	}
 
-	.tech-stack {
-		h2 {
-			margin-left: 1.5em;
-		}
-		.tech {
-			margin-top: 1em;
-			width: 100%;
-			background-color: $sectionColorDark;
-			padding: 2em 0;
-
-			details {
-				max-width: 80%;
-				margin: 0 1em;
-
-				summary {
-					color: rgba(255, 255, 255, 0.5);
-				}
-			}
-			details[open] > summary {
-				color: white;
-			}
-			details[open] p {
-				margin: 0 0 0.5em 1em;
-				font-size: 0.9em;
-			}
-		}
-		.extra-detail {
-			text-align: center;
-			color: #ffffff85;
-			margin: 3em 1em;
-			font-size: 0.9em;
-		}
-	}
-
 	footer {
 		margin-top: 3em;
 		padding: 1em 0;
@@ -591,6 +595,7 @@ html {
 				flex-direction: column;
 				height: fit-content;
 				gap: 3vh;
+				margin-bottom: 5vh;
 				.game-img-container {
 					margin-top: 3vh;
 					.game-img {

@@ -124,6 +124,14 @@ document.addEventListener('DOMContentLoaded', () => {
 				loadGameSelected(this);
 			});
 		});
+
+		backBtn.addEventListener('click', () => {
+			topElements.style.display = 'block';
+			gameList.style.display = 'flex';
+			bottomElements.style.display = 'flex';
+
+			gameElements.style.display = 'none';
+		});
 	}
 });
 const loadInitialGames = () => {
@@ -179,14 +187,6 @@ const loadGameInfo = function (el) {
 		})
 		.then(gameDetails);
 };
-
-backBtn.addEventListener('click', () => {
-	topElements.style.display = 'block';
-	gameList.style.display = 'flex';
-	bottomElements.style.display = 'flex';
-
-	gameElements.style.display = 'none';
-});
 
 const nextPageFunc = () => {
 	console.log('Pressed the next page!');
