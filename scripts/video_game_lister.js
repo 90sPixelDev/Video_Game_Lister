@@ -167,7 +167,7 @@ const checkStatus = (response) => {
 
 // LOADING INITIAL DATA
 document.addEventListener('DOMContentLoaded', () => {
-	if (window.location.pathname === '/browse.html') {
+	if (window.location.pathname === '/Video_Game_Lister/browse.html') {
 		loadGameList();
 
 		// CHANGING PAGES AND LOADING DATA
