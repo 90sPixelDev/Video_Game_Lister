@@ -25,7 +25,7 @@ const nextPage = document.querySelector('.next-page');
 const nextPageB = document.querySelector('#next-page');
 const prevPage = document.querySelector('.prev-page');
 const prevPageB = document.querySelector('#prev-page');
-const pageNum = document.querySelectorAll('.page-holder p');
+const pageNum = document.querySelectorAll('.page-num');
 const toTop = document.querySelector('.to-top');
 
 const topElements = document.querySelector('.top');
@@ -151,8 +151,8 @@ const loadGameData = async (data) => {
 			break;
 		}
 	}
-	pageNum[0].innerText = page;
-	pageNum[1].innerText = page;
+	pageNum[0].innerText = 'Page: ' + page;
+	pageNum[1].innerText = 'Page: ' + page;
 };
 
 // CREATING, APPENDING, AND SETTING SRC OF THE GAME THUMBNAIL
@@ -213,6 +213,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 		});
 
 		filterType.addEventListener('change', function () {
+			canTurnPage = true;
+
 			page = 1;
 			if (this.value === 'all') {
 				filteredURL = `https://free-to-play-games-database.p.rapidapi.com/api/games?platform=${filterPlatformSelected}`;
@@ -233,6 +235,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 			}
 		});
 		filterPlatform.addEventListener('change', function () {
+			canTurnPage = true;
+
 			console.log('Platform: ' + this.value);
 			page = 1;
 			if (this.value === 'all') {
