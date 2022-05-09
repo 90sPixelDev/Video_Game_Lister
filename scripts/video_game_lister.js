@@ -172,7 +172,8 @@ const titleSize = (gameItem, gameTitle) => {
 // LOADING INITIAL DATA
 document.addEventListener('DOMContentLoaded', async () => {
 	// if (window.location.pathname === '/projects/Video_Game_Lister/browse.html') {
-	if (window.location.pathname === '/projects/Free_the_Games/browse.html') {
+	let path = window.location.pathname;
+	if (path.contains('browse')) {
 		console.log('Correct Path!');
 		await loadGameList();
 
