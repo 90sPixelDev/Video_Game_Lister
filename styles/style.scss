@@ -306,13 +306,6 @@ html {
 				text-align: center;
 				grid-area: games;
 			}
-		}
-		.bottom {
-			width: 100%;
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-
 			select {
 				background-color: rgba(0, 0, 0, 0.5);
 				height: 2.3em;
@@ -326,6 +319,7 @@ html {
 				flex-direction: column;
 				align-items: center;
 				gap: 3vh;
+				margin-top: 2vh;
 				.search {
 					.search-btn {
 						width: 3em;
@@ -345,6 +339,12 @@ html {
 				.filter-area {
 				}
 			}
+		}
+		.bottom {
+			width: 100%;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
 		}
 
 		.games {
