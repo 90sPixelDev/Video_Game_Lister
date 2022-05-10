@@ -2,7 +2,7 @@
 const options = {
 	method: 'GET',
 	url: 'https://free-to-play-games-database.p.rapidapi.com/api/game',
-	params: { id: '452' },
+	params: { id: '1' },
 	headers: {
 		'X-RapidAPI-Host': 'free-to-play-games-database.p.rapidapi.com',
 		'X-RapidAPI-Key': '3a60d8be74msh2c52c4cf188b0cep1cfe1fjsn43e75d3457a2',
@@ -108,7 +108,6 @@ let observer = new IntersectionObserver(onChange, obsOptions);
 function onChange(entries, obsOptions) {
 	entries.forEach((entry) => {
 		if (entry.intersectionRatio > 0) {
-			console.log(entry.target);
 			displayScrolledElement(entry.target);
 		} else {
 			notInView(entry.target);
@@ -119,7 +118,6 @@ function onChange(entries, obsOptions) {
 const observeItems = (animatedItem) => {
 	animatedItem.forEach((el) => {
 		observer.observe(el);
-		console.log(animatedItem);
 	});
 };
 
@@ -320,8 +318,6 @@ const gameDetails = (data) => {
 	gameInfoReleaseDate.innerText = data.release_date;
 	gameInfoDescription.innerText = data.short_description;
 
-	console.log(data.screenshots.length);
-
 	for (let i = 0; i < data.screenshots.length; i++) {
 		let createImg = document.createElement('img');
 		screenshotsParent.append(createImg);
@@ -333,13 +329,12 @@ const gameDetails = (data) => {
 };
 
 const loadGameInfo = async function (el) {
-	let elementId = el.id;
+	options.params = el.id;
 	try {
 		const res = await axios.get(
-			`https://free-to-play-games-database.p.rapidapi.com/api/game?id=${elementId}`,
+			`https://free-to-play-games-database.p.rapidapi.com/api/game?id=${options.params}`,
 			options
 		);
-		console.log(res.data);
 		gameDetails(res.data);
 	} catch (err) {
 		console.log(err);
