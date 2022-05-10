@@ -103,27 +103,25 @@ const obsOptions = {
 	threshold: 0.5,
 };
 
-if ('IntersectionObserver' in window) {
-	let observer = new IntersectionObserver(onChange, obsOptions);
+let observer = new IntersectionObserver(onChange, obsOptions);
 
-	function onChange(entries, obsOptions) {
-		entries.forEach((entry) => {
-			if (entry.intersectionRatio > 0) {
-				displayScrolledElement(entry.target);
-			} else {
-				notInView(entry.target);
-			}
-		});
-	}
-
-	const observeItems = (animatedItem) => {
-		animatedItem.forEach((el) => {
-			observer.observe(el);
-		});
-	};
-} else {
-	// not supported
+function onChange(entries, obsOptions) {
+	entries.forEach((entry) => {
+		if (entry.intersectionRatio > 0) {
+			console.log(entry.target);
+			displayScrolledElement(entry.target);
+		} else {
+			notInView(entry.target);
+		}
+	});
 }
+
+const observeItems = (animatedItem) => {
+	animatedItem.forEach((el) => {
+		observer.observe(el);
+		console.log(animatedItem);
+	});
+};
 
 // LOADING THE VISUAL DATA DYNAMICALLY ON BROWSE VIEW
 const loadGameData = async (data) => {
