@@ -386,3 +386,7 @@ const notInView = (el) => {
 		el.classList.remove('bottom-animated');
 	}
 };
+
+toTop.addEventListener('click', () => {
+	window.scrollTo({ top: 0, behavior: 'smooth' });
+});
