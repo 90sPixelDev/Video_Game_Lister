@@ -9,23 +9,14 @@ const options = {
 	},
 };
 
-// const options = {
-// 	method: 'GET',
-// 	headers: {
-// 		'X-RapidAPI-Host': 'free-to-play-games-database.p.rapidapi.com',
-// 		'X-RapidAPI-Key': '3a60d8be74msh2c52c4cf188b0cep1cfe1fjsn43e75d3457a2',
-// 	},
-// };
-
 // ALL VARIABLES USED
 const gameItemParent = document.querySelector('.container');
-// const gameItem = document.querySelectorAll('.game-item');
-// const animatedItem = document.querySelectorAll('.anim');
 const nextPage = document.querySelector('.next-page');
 const nextPageB = document.querySelector('#next-page');
 const prevPage = document.querySelector('.prev-page');
 const prevPageB = document.querySelector('#prev-page');
 const pageNum = document.querySelectorAll('.page-num');
+
 const toTop = document.querySelector('.to-top');
 
 const topElements = document.querySelector('.top');
@@ -106,6 +97,30 @@ const tagList = [
 	'mmorts',
 ];
 
+const obsOptions = {
+	root: null,
+	rootMargin: '0px',
+	threshold: 0.5,
+};
+
+let observer = new IntersectionObserver(onChange, obsOptions);
+
+function onChange(entries, obsOptions) {
+	entries.forEach((entry) => {
+		if (entry.intersectionRatio > 0) {
+			displayScrolledElement(entry.target);
+		} else {
+			notInView(entry.target);
+		}
+	});
+}
+
+const observeItems = (animatedItem) => {
+	animatedItem.forEach((el) => {
+		observer.observe(el);
+	});
+};
+
 // LOADING THE VISUAL DATA DYNAMICALLY ON BROWSE VIEW
 const loadGameData = async (data) => {
 	const gameItem = document.querySelectorAll('.game-item');
@@ -153,6 +168,9 @@ const loadGameData = async (data) => {
 	}
 	pageNum[0].innerText = 'Page: ' + page;
 	pageNum[1].innerText = 'Page: ' + page;
+
+	let animatedItem = document.querySelectorAll('.anim');
+	observeItems(animatedItem);
 };
 
 // CREATING, APPENDING, AND SETTING SRC OF THE GAME THUMBNAIL
@@ -264,7 +282,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 			gameElements.style.display = 'none';
 		});
 	}
+	let animatedItem = document.querySelectorAll('.anim');
+	observeItems(animatedItem);
 });
+
 const loadGameList = async () => {
 	console.log('Filter by: ' + filterTagSelected);
 	console.log('Platform: ' + filterPlatformSelected);
@@ -337,27 +358,6 @@ const prevPageFunc = () => {
 };
 
 // FADE ANIMATION FUNCTIONS
-const elementInView = (el, scrollOffset) => {
-	const elementTop = el.getBoundingClientRect().top;
-
-	if (
-		elementTop >=
-			(Window.innerHeight || document.documentElement.clientHeight) - scrollOffset ||
-		elementTop <= -scrollOffset
-	)
-		return false;
-	else return true;
-};
-
-const scrollAnimManager = () => {
-	const animatedItem = document.querySelectorAll('.anim');
-	animatedItem.forEach((el) => {
-		if (elementInView(el, 100)) {
-			displayScrolledElement(el);
-		} else notInView(el);
-	});
-};
-
 const displayScrolledElement = (el) => {
 	if (el.classList.contains('anim')) {
 		el.classList.add('fade-animated');
@@ -386,12 +386,3 @@ const notInView = (el) => {
 		el.classList.remove('bottom-animated');
 	}
 };
-
-window.addEventListener('scroll', () => {
-	scrollAnimManager();
-});
-
-// 	SCROLL TO TOP FUNCTIONS
-toTop.addEventListener('click', () => {
-	window.scrollTo({ top: 0, behavior: 'smooth' });
-});
