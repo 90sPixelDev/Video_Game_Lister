@@ -318,6 +318,8 @@ const gameDetails = (data) => {
 	gameInfoReleaseDate.innerText = data.release_date;
 	gameInfoDescription.innerText = data.short_description;
 
+	removePrevImgs();
+
 	for (let i = 0; i < data.screenshots.length; i++) {
 		let createImg = document.createElement('img');
 		screenshotsParent.append(createImg);
@@ -326,6 +328,12 @@ const gameDetails = (data) => {
 		createImg.classList.add('game-screenshot');
 	}
 	return data;
+};
+
+const removePrevImgs = () => {
+	while (screenshotsParent.firstChild) {
+		screenshotsParent.removeChild(screenshotsParent.firstChild);
+	}
 };
 
 const loadGameInfo = async function (el) {
