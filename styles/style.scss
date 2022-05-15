@@ -198,7 +198,6 @@ html {
 				padding: 1em 2em 1em 2em;
 				border-radius: 0 5em 5em 0;
 				box-shadow: 0 5px 1em rgba(0, 0, 0, 0.5);
-				border-top: 1px solid white;
 				font-size: 0.9em;
 
 				animation: leftSlide 1s ease-out forwards;
@@ -223,7 +222,6 @@ html {
 				opacity: 0;
 				transform: translateX(50vw);
 				box-shadow: 0 5px 1em rgba(0, 0, 0, 0.5);
-				border-top: 1px solid white;
 				font-size: 0.9em;
 
 				animation: rightSlide 1s 1s ease-out forwards;
@@ -335,8 +333,6 @@ html {
 
 						caret-color: $subBGColor;
 					}
-				}
-				.filter-area {
 				}
 			}
 		}

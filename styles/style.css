@@ -179,7 +179,6 @@ html body {
     border-radius: 0 5em 5em 0;
     -webkit-box-shadow: 0 5px 1em rgba(0, 0, 0, 0.5);
             box-shadow: 0 5px 1em rgba(0, 0, 0, 0.5);
-    border-top: 1px solid white;
     font-size: 0.9em;
     -webkit-animation: leftSlide 1s ease-out forwards;
             animation: leftSlide 1s ease-out forwards;
@@ -219,7 +218,6 @@ html body {
             transform: translateX(50vw);
     -webkit-box-shadow: 0 5px 1em rgba(0, 0, 0, 0.5);
             box-shadow: 0 5px 1em rgba(0, 0, 0, 0.5);
-    border-top: 1px solid white;
     font-size: 0.9em;
     -webkit-animation: rightSlide 1s 1s ease-out forwards;
             animation: rightSlide 1s 1s ease-out forwards;
