@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto:wght@100&display=swap");
 * {
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   font-family: 'Montserrat', sans-serif;
   line-height: 1.5em;
   margin: 0;
@@ -623,6 +623,13 @@ html body {
 }
 
 @media all and (min-width: 897px) {
+  main .games .games-margin .container .game-item:hover {
+    border: 1px solid white;
+    -webkit-box-shadow: inset 0 0 9999px red, 0 0 3em black;
+            box-shadow: inset 0 0 9999px red, 0 0 3em black;
+    -webkit-transform: scale(1.15);
+            transform: scale(1.15);
+  }
   .home .wrapper-img {
     display: block;
     height: 100%;
