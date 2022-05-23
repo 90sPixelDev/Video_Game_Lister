@@ -5,7 +5,8 @@ const options = {
 	params: { id: '1' },
 	headers: {
 		'X-RapidAPI-Host': 'free-to-play-games-database.p.rapidapi.com',
-		'X-RapidAPI-Key': '3a60d8be74msh2c52c4cf188b0cep1cfe1fjsn43e75d3457a2',
+		'X-RapidAPI-Key':
+			'3a60d8be74msh2c52c4cf188b0cep1cfe1fjsn43e75d3457a2',
 	},
 };
 
@@ -43,7 +44,8 @@ const filterType = document.querySelector('#filter-type');
 const filterPlatform = document.querySelector('#filter-platform');
 let filterTagSelected = 'all';
 let filterPlatformSelected = 'all';
-let filteredURL = 'https://free-to-play-games-database.p.rapidapi.com/api/games';
+let filteredURL =
+	'https://free-to-play-games-database.p.rapidapi.com/api/games';
 
 let canTurnPage = true;
 let page = 1;
@@ -161,7 +163,9 @@ const loadGameData = async (data) => {
 			gameItems[count].id = gameID;
 			count++;
 		} else {
-			console.log('There are no more games to display onto next page.');
+			console.log(
+				'There are no more games to display onto next page.'
+			);
 			canTurnPage = false;
 			break;
 		}
@@ -171,6 +175,7 @@ const loadGameData = async (data) => {
 
 	let animatedItem = document.querySelectorAll('.anim');
 	observeItems(animatedItem);
+	return data;
 };
 
 // CREATING, APPENDING, AND SETTING SRC OF THE GAME THUMBNAIL
@@ -186,6 +191,14 @@ const titleSize = (gameItem, gameTitle) => {
 	else if (gameTitle.length > 20) gameItem.style.fontSize = '12px';
 	else if (gameTitle.length > 15) gameItem.style.fontSize = '15px';
 };
+
+// ADDING EVENT LISTENER TO EACH NEW GAME ITEM CREATED ON PAGE LOAD
+const addGameSelectEvent = (currentGameItemList) =>
+	currentGameItemList.forEach((el) => {
+		el.addEventListener('click', function () {
+			loadGameSelected(this);
+		});
+	});
 
 // LOADING INITIAL DATA
 document.addEventListener('DOMContentLoaded', async () => {
@@ -215,12 +228,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 			loadGameList();
 		});
 
-		const gameItem = document.querySelectorAll('.game-item');
-		gameItem.forEach((el) => {
-			el.addEventListener('click', function () {
-				loadGameSelected(this);
-			});
-		});
+		// const gameItem = document.querySelectorAll('.game-item');
+		// addGameSelectEvent(gameItem);
 
 		// AUTOMATICALLY CREATING THE CATEGORY SELECT LIST OR I WOULD TAKE OVER 10 MIN JUST HARD CODING IT IN
 		tagList.forEach((tag) => {
@@ -237,8 +246,12 @@ document.addEventListener('DOMContentLoaded', async () => {
 			if (this.value === 'all') {
 				filteredURL = `https://free-to-play-games-database.p.rapidapi.com/api/games?platform=${filterPlatformSelected}`;
 				loadGameList();
-			} else if (this.value === 'all' && filterPlatformSelected === 'all') {
-				filteredURL = 'https://free-to-play-games-database.p.rapidapi.com/api/games';
+			} else if (
+				this.value === 'all' &&
+				filterPlatformSelected === 'all'
+			) {
+				filteredURL =
+					'https://free-to-play-games-database.p.rapidapi.com/api/games';
 				loadGameList();
 			} else if (filterPlatformSelected === 'all') {
 				console.log('Changed Category only!');
@@ -261,7 +274,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 				filteredURL = `https://free-to-play-games-database.p.rapidapi.com/api/games?category=${filterTagSelected}`;
 				loadGameList();
 			} else if (this.value === 'all' && filterTagSelected === 'all') {
-				filteredURL = 'https://free-to-play-games-database.p.rapidapi.com/api/games';
+				filteredURL =
+					'https://free-to-play-games-database.p.rapidapi.com/api/games';
 				loadGameList();
 			} else if (filterTagSelected === 'all') {
 				filterPlatformSelected = this.value;
@@ -295,6 +309,8 @@ const loadGameList = async () => {
 	} catch (err) {
 		console.log(err);
 	}
+	const gameItem = document.querySelectorAll('.game-item');
+	addGameSelectEvent(gameItem);
 };
 
 // SHOW THE DETAILED INFO OF GAME SELECTED
@@ -394,4 +410,8 @@ const notInView = (el) => {
 
 toTop.addEventListener('click', () => {
 	window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+document.addEventListener('click', (e) => {
+	console.log(e.target);
 });
