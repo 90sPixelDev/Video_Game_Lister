@@ -1,15 +1,3 @@
-// API OPTIONS
-const options = {
-	method: 'GET',
-	url: 'https://free-to-play-games-database.p.rapidapi.com/api/game',
-	params: { id: '1' },
-	headers: {
-		'X-RapidAPI-Host': 'free-to-play-games-database.p.rapidapi.com',
-		'X-RapidAPI-Key':
-			'3a60d8be74msh2c52c4cf188b0cep1cfe1fjsn43e75d3457a2',
-	},
-};
-
 // ALL VARIABLES USED
 const gameItemParent = document.querySelector('.container');
 const nextPage = document.querySelector('.next-page');
@@ -98,6 +86,18 @@ const tagList = [
 	'horror',
 	'mmorts',
 ];
+
+// API OPTIONS
+const options = {
+	method: 'GET',
+	url: 'https://free-to-play-games-database.p.rapidapi.com/api/game',
+	params: { id: '1' },
+	headers: {
+		'X-RapidAPI-Host': 'free-to-play-games-database.p.rapidapi.com',
+		'X-RapidAPI-Key':
+			'3a60d8be74msh2c52c4cf188b0cep1cfe1fjsn43e75d3457a2',
+	},
+};
 
 const obsOptions = {
 	root: null,
@@ -343,6 +343,7 @@ const gameDetails = (data) => {
 		createImg.src = screenshot;
 		createImg.classList.add('game-screenshot');
 	}
+	goToTop();
 	return data;
 };
 
@@ -368,14 +369,12 @@ const loadGameInfo = async function (el) {
 const nextPageFunc = () => {
 	if (canTurnPage) {
 		page++;
-		console.log('Page: ' + page);
 	} else console.log('No more games to display on next page!');
 };
 const prevPageFunc = () => {
 	canTurnPage = true;
 	if (page === 1) return;
 	page--;
-	console.log('Page: ' + page);
 };
 
 // FADE ANIMATION FUNCTIONS
@@ -408,10 +407,15 @@ const notInView = (el) => {
 	}
 };
 
-toTop.addEventListener('click', () => {
+const goToTop = () => {
 	window.scrollTo({ top: 0, behavior: 'smooth' });
+};
+
+toTop.addEventListener('click', () => {
+	goToTop();
 });
 
-document.addEventListener('click', (e) => {
-	console.log(e.target);
-});
+// FOR TESTING
+// document.addEventListener('click', (e) => {
+// 	console.log(e.target);
+// });
