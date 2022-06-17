@@ -37,12 +37,18 @@ html body {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+    height: 100%;
     -webkit-box-pack: space-evenly;
         -ms-flex-pack: space-evenly;
             justify-content: space-evenly;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
   }
   header .nav-bar ul .nav-item {
     list-style: none;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 0.5em 1.5em;
   }
   header .nav-bar ul .nav-item a {
     text-decoration: none;
@@ -569,8 +575,8 @@ html body {
     left: 2vw;
     bottom: 5vh;
     font-size: 4em;
-    color: rgba(255, 255, 255, 0.75);
-    background-color: rgba(255, 255, 255, 0.1);
+    color: rgba(0, 0, 0, 0.85);
+    background-color: rgba(255, 255, 255, 0.25);
     border-radius: 50%;
     width: 1.5em;
     border: none;
