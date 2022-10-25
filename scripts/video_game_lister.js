@@ -88,8 +88,6 @@ const tagList = [
 ];
 
 // API OPTIONS
-// const axios = require('axios').default;
-
 const options = {
 	method: 'GET',
 	url: 'https://free-to-play-games-database.p.rapidapi.com/api/game',
@@ -184,6 +182,7 @@ const loadGameData = async (data) => {
 const createGameImg = (el, imgURL) => {
 	const img = document.createElement('img');
 	img.src = imgURL;
+	img.classList.add('game-thumbnail');
 	el.append(img);
 };
 

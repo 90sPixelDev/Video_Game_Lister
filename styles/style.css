@@ -165,6 +165,9 @@ html body {
     width: 30vh;
     height: 20vh;
   }
+  main .game-wrapper .game-screenshot {
+    margin: 20px;
+  }
   main .home h1 {
     text-align: center;
     margin: 1.5em 0 0.25em 0;
@@ -515,7 +518,6 @@ html body {
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
-    gap: 1vw;
     border: 1px solid rgba(255, 255, 255, 0.25);
     -webkit-box-shadow: inset 0 0 5em rgba(0, 0, 0, 0.5);
             box-shadow: inset 0 0 5em rgba(0, 0, 0, 0.5);
@@ -649,7 +651,7 @@ html body {
     place-items: center;
     margin-top: 10vh;
   }
-  .home figure img {
+  .home figure .game-thumbnail {
     width: 100%;
     max-width: 500px;
     -webkit-box-shadow: 0 0 3em rgba(0, 0, 0, 0.5);
@@ -674,8 +676,13 @@ html body {
   main .game .game-wrapper .game-img-container .game-img {
     max-width: 430px;
   }
+  main .game .game-wrapper .game-screenshots {
+    width: 100%;
+    max-height: 30vh;
+  }
   main .game .game-wrapper .game-screenshots .game-screenshot {
-    max-width: 430px;
+    width: 100%;
+    height: 100%;
   }
 }
 
@@ -715,11 +722,12 @@ html body {
         -ms-flex-direction: column;
             flex-direction: column;
     width: 85%;
-    height: 300px;
+    min-height: 300px;
     margin: auto;
   }
   main .game .game-wrapper .game-screenshots .game-screenshot {
     width: 90%;
+    height: 90%;
   }
 }
 
@@ -731,13 +739,13 @@ html body {
     width: 50%;
     max-width: 500px;
   }
-  main .games .games-margin .container .game-item img {
+  main .games .games-margin .container .game-item .game-thumbnail {
     width: 42.5vw;
   }
 }
 
 @media all and (min-width: 637px) and (max-width: 1100px) {
-  main .games .games-margin .container .game-item img {
+  main .games .games-margin .container .game-item .game-thumbnail {
     width: 27.5vw;
   }
 }
@@ -765,8 +773,9 @@ html body {
   main .games .games-margin .container .game-item {
     width: 90%;
   }
-  main .games .games-margin .container .game-item img {
+  main .games .games-margin .container .game-item .game-thumbnail {
     width: 100%;
+    height: 100%;
   }
 }
 /*# sourceMappingURL=style.css.map */

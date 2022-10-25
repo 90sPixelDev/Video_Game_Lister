@@ -182,6 +182,10 @@ html {
 				width: 30vh;
 				height: 20vh;
 			}
+
+			.game-screenshot {
+				margin: 20px;
+			}
 		}
 
 		.home {
@@ -461,7 +465,6 @@ html {
 					margin-top: 0;
 					overflow-x: auto;
 					align-items: center;
-					gap: 1vw;
 
 					border: 1px solid rgba(255, 255, 255, 0.25);
 					box-shadow: inset 0 0 5em rgba(0, 0, 0, 0.5);
@@ -597,7 +600,7 @@ html {
 			display: grid;
 			place-items: center;
 			margin-top: 10vh;
-			img {
+			.game-thumbnail {
 				width: 100%;
 				max-width: 500px;
 				box-shadow: 0 0 3em rgba(0, 0, 0, 0.5);
@@ -624,8 +627,13 @@ html {
 		.game-img-container .game-img {
 			max-width: 430px;
 		}
-		.game-screenshots .game-screenshot {
-			max-width: 430px;
+		.game-screenshots {
+			width: 100%;
+			max-height: 30vh;
+			.game-screenshot {
+				width: 100%;
+				height: 100%;
+			}
 		}
 	}
 }
@@ -655,10 +663,11 @@ html {
 				.game-screenshots {
 					flex-direction: column;
 					width: 85%;
-					height: 300px;
+					min-height: 300px;
 					margin: auto;
 					.game-screenshot {
 						width: 90%;
+						height: 90%;
 					}
 				}
 			}
@@ -675,13 +684,13 @@ html {
 			max-width: 500px;
 		}
 	}
-	main .games .games-margin .container .game-item img {
+	main .games .games-margin .container .game-item .game-thumbnail {
 		width: 42.5vw;
 	}
 }
 //Medium Screen Sizes
 @media all and (min-width: 637px) and (max-width: 1100px) {
-	main .games .games-margin .container .game-item img {
+	main .games .games-margin .container .game-item .game-thumbnail {
 		width: 27.5vw;
 	}
 }
@@ -707,8 +716,9 @@ html {
 		align-content: center;
 		.game-item {
 			width: 90%;
-			img {
+			.game-thumbnail {
 				width: 100%;
+				height: 100%;
 			}
 		}
 	}
