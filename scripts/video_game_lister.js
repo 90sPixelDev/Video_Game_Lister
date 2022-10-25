@@ -88,14 +88,16 @@ const tagList = [
 ];
 
 // API OPTIONS
+// const axios = require('axios').default;
+
 const options = {
 	method: 'GET',
 	url: 'https://free-to-play-games-database.p.rapidapi.com/api/game',
 	params: { id: '1' },
 	headers: {
-		'X-RapidAPI-Host': 'free-to-play-games-database.p.rapidapi.com',
 		'X-RapidAPI-Key':
 			'3a60d8be74msh2c52c4cf188b0cep1cfe1fjsn43e75d3457a2',
+		'X-RapidAPI-Host': 'free-to-play-games-database.p.rapidapi.com',
 	},
 };
 
@@ -301,8 +303,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 const loadGameList = async () => {
-	console.log('Filter by: ' + filterTagSelected);
-	console.log('Platform: ' + filterPlatformSelected);
 	try {
 		const res = await axios.get(filteredURL, options);
 		loadGameData(res.data);
@@ -354,15 +354,33 @@ const removePrevImgs = () => {
 };
 
 const loadGameInfo = async function (el) {
-	options.params = el.id;
+	console.log(el);
+	options.params = { id: el.id };
+	console.log(options);
 	try {
 		const res = await axios.get(
-			`https://free-to-play-games-database.p.rapidapi.com/api/game?id=${options.params}`,
+			`https://free-to-play-games-database.p.rapidapi.com/api/game?id=${el.id}`,
 			options
 		);
 		gameDetails(res.data);
+		console.log(res.data);
 	} catch (err) {
-		console.log(err);
+		if (err.response) {
+			// The request was made and the server responded with a status code
+			// that falls out of the range of 2xx
+			console.log(err.response.data);
+			console.log(err.response.status);
+			console.log(err.response.headers);
+		} else if (err.request) {
+			// The request was made but no response was received
+			// `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+			// http.ClientRequest in node.js
+			console.log(err.request);
+		} else {
+			// Something happened in setting up the request that triggered an Error
+			console.log('Error', err.message);
+		}
+		console.log(err.config);
 	}
 };
 
