@@ -353,16 +353,13 @@ const removePrevImgs = () => {
 };
 
 const loadGameInfo = async function (el) {
-	console.log(el);
 	options.params = { id: el.id };
-	console.log(options);
 	try {
 		const res = await axios.get(
 			`https://free-to-play-games-database.p.rapidapi.com/api/game?id=${el.id}`,
 			options
 		);
 		gameDetails(res.data);
-		console.log(res.data);
 	} catch (err) {
 		if (err.response) {
 			// The request was made and the server responded with a status code
