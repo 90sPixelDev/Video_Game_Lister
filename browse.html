@@ -27,8 +27,26 @@
 		<main>
 			<section class="top">
 				<h1>Games</h1>
+				<section class="search-area">
+					<div class="filter-area">
+						<label for="filter-type">Filter by:</label>
+						<select
+							name="filter-type"
+							id="filter-type"
+						></select>
+						<label for="filter-platform">Platform:</label>
+						<select
+							name="filter-platform"
+							id="filter-platform"
+						>
+							<option value="all">all</option>
+							<option value="pc">Windows PC</option>
+							<option value="browser">Browser Web</option>
+						</select>
+					</div>
+				</section>
 				<div class="page-holder">
-					<p>1</p>
+					<p>Page: 1</p>
 				</div>
 				<div class="btn-holder">
 					<button class="prev-page"><</button>
@@ -64,26 +82,20 @@
 					<button class="next-page" id="next-page">></button>
 				</div>
 				<div class="page-holder">
-					<p>1</p>
+					<p>Page: 1</p>
 				</div>
 				<section class="search-area">
-					<!-- <div class="search">
-						<label for="search-game">Search:</label>
-						<input type="text" name="search-game" class="search-game" />
-						<select name="search-type" id="search-type">
-							<option value="title">Title</option>
-							<option value="genre">Genre</option>
-							<option value="developer">Developer</option>
-							<option value="publisher">Publisher</option>
-						</select>
-						<label for="search-btn"></label>
-						<button name="search-btn" class="search-btn">></button>
-					</div> -->
 					<div class="filter-area">
 						<label for="filter-type">Filter by:</label>
-						<select name="filter-type" id="filter-type"></select>
+						<select
+							name="filter-type"
+							id="filter-type"
+						></select>
 						<label for="filter-platform">Platform:</label>
-						<select name="filter-platform" id="filter-platform">
+						<select
+							name="filter-platform"
+							id="filter-platform"
+						>
 							<option value="all">all</option>
 							<option value="pc">Windows PC</option>
 							<option value="browser">Browser Web</option>
@@ -98,17 +110,28 @@
 						<img
 							class="game-img"
 							src="https://www.freetogame.com/g/14/thumbnail.jpg"
-							alt=""
+							alt="Placeholder for game thumbnail while it loads."
 						/>
 					</figure>
 					<section class="basic-info">
 						<div class="game-info">
 							<h1 class="game-title">Unloaded Title</h1>
 							<p>Genre: <span class="genre"></span></p>
-							<p>Platform: <span class="platform"></span></p>
-							<p>Developer: <span class="developer"></span></p>
-							<p>Release Date: <span class="release-date"></span></p>
-							<p>Short description: <span class="description"></span></p>
+							<p>
+								Platform: <span class="platform"></span>
+							</p>
+							<p>
+								Developer:
+								<span class="developer"></span>
+							</p>
+							<p>
+								Release Date:
+								<span class="release-date"></span>
+							</p>
+							<p>
+								Short description:
+								<span class="description"></span>
+							</p>
 						</div>
 					</section>
 					<div class="game-screenshots"></div>
@@ -137,7 +160,7 @@
 				</ul>
 			</section>
 			<a href="about.html">About | How it works -></a>
-			<p>Created, developed, and designed by Lien Font &copy;</p>
+			<p>Created, developed, and designed by Lien Font &copy; 2023</p>
 		</footer>
 		<script src="scripts/video_game_lister.js"></script>
 	</body>

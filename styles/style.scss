@@ -19,8 +19,8 @@ $headerHeightMobLand: 5vh;
 // ALL ENCOMPASING LAYOUT
 
 * {
-	font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode',
-		Geneva, Verdana, sans-serif;
+	font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+		'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 	font-family: 'Montserrat', sans-serif;
 	line-height: 1.5em;
 	margin: 0;
@@ -77,7 +77,8 @@ html {
 		z-index: -1;
 		top: 0;
 		left: 0;
-		background: url('../images/pexels-marko-blazevic-2708981.jpg') no-repeat center;
+		background: url('../images/pexels-marko-blazevic-2708981.jpg')
+			no-repeat center;
 		background-size: cover;
 		opacity: 50%;
 		height: 75vh;
@@ -188,7 +189,12 @@ html {
 			.title-line {
 				width: 50%;
 				margin: auto;
-				background: linear-gradient(to right, transparent, white, transparent);
+				background: linear-gradient(
+					to right,
+					transparent,
+					white,
+					transparent
+				);
 				margin-bottom: 5em;
 			}
 			.question1 {
@@ -303,8 +309,39 @@ html {
 			h1 {
 				font-size: 2em;
 				margin: auto;
+				margin-bottom: 1em;
 				text-align: center;
 				grid-area: games;
+			}
+			select {
+				background-color: rgba(0, 0, 0, 0.5);
+				height: 2.3em;
+				width: 25vw;
+				max-width: 10em;
+
+				accent-color: black;
+			}
+			.search-area {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				gap: 3vh;
+				.search {
+					.search-btn {
+						width: 3em;
+						height: 3em;
+						background-color: rgba(0, 0, 0, 0.5);
+					}
+					.search-game {
+						background-color: rgba(0, 0, 0, 0.5);
+
+						margin: 0 1vw;
+						width: 10em;
+						height: 2em;
+
+						caret-color: $subBGColor;
+					}
+				}
 			}
 		}
 		.bottom {
@@ -342,8 +379,6 @@ html {
 						caret-color: $subBGColor;
 					}
 				}
-				.filter-area {
-				}
 			}
 		}
 
@@ -361,15 +396,12 @@ html {
 				.container {
 					width: 97%;
 					padding: 1.5em 0;
-					gap: 2vw;
+					gap: 2vw 2vw;
 					margin: auto;
 					border-radius: 1em;
-					display: flex;
-					align-self: center;
-					align-content: flex-start;
-					align-items: flex-start;
+					display: grid;
+					grid-template-columns: repeat(4, 20vw);
 					justify-content: center;
-					flex-wrap: wrap;
 
 					.game-item {
 						display: flex;
@@ -381,7 +413,14 @@ html {
 						opacity: 10%;
 						transform: scale(0.75);
 						border: none;
-						transition: all 1s;
+						transition: transform 1s, opacity 1s,
+							background-color 0.25s;
+						&:hover {
+							background-color: rgba(200, 0, 0);
+							transform: scale(1.05);
+
+							transition: transform 0.5s ease-out;
+						}
 						img {
 							box-shadow: 0 0 1em rgba(0, 0, 0, 0.5);
 							width: 20vw;
@@ -484,7 +523,12 @@ html {
 		}
 	}
 	.btn-holder {
-		background: linear-gradient(to right, transparent, rgba(0, 0, 0, 0.5), transparent);
+		background: linear-gradient(
+			to right,
+			transparent,
+			rgba(0, 0, 0, 0.5),
+			transparent
+		);
 		text-align: center;
 		margin: 0.5em 0 1em 0;
 		width: 100%;
@@ -539,7 +583,8 @@ html {
 
 				transition: all 1s;
 				#github {
-					background: url('../images/github-social-logo.png') no-repeat center;
+					background: url('../images/github-social-logo.png')
+						no-repeat center;
 					background-size: contain;
 					height: 2.5em;
 					width: 2.5em;
@@ -590,15 +635,19 @@ html {
 	}
 }
 @media all and (min-width: 1100px) {
-	main .games .games-margin .container .game-item img {
-		width: 20vw;
-	}
-	main .game .game-wrapper {
-		.game-img-container .game-img {
-			max-width: 430px;
+	main .games .games-margin .container {
+		// min-height: 500px;
+
+		.game-item img {
+			width: 20vw;
 		}
-		.game-screenshots .game-screenshot {
-			max-width: 430px;
+		main .game .game-wrapper {
+			.game-img-container .game-img {
+				max-width: 430px;
+			}
+			.game-screenshots .game-screenshot {
+				max-width: 430px;
+			}
 		}
 	}
 }
@@ -648,14 +697,20 @@ html {
 			max-width: 500px;
 		}
 	}
-	main .games .games-margin .container .game-item img {
-		width: 42.5vw;
+	main .games .games-margin .container {
+		grid-template-columns: repeat(2, 42.5vw);
+		.game-item img {
+			width: 42.5vw;
+		}
 	}
 }
 //Medium Screen Sizes
 @media all and (min-width: 637px) and (max-width: 1100px) {
-	main .games .games-margin .container .game-item img {
-		width: 27.5vw;
+	main .games .games-margin .container {
+		grid-template-columns: repeat(3, 27.5vw);
+		.game-item img {
+			width: 27.5vw;
+		}
 	}
 }
 
@@ -676,8 +731,8 @@ html {
 		}
 	}
 	main .games .games-margin .container {
-		flex-direction: column;
-		align-content: center;
+		grid-template-columns: 1fr;
+		justify-items: center;
 		.game-item {
 			width: 90%;
 			img {

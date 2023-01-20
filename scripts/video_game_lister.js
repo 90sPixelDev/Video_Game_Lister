@@ -3,7 +3,8 @@ const options = {
 	method: 'GET',
 	headers: {
 		'X-RapidAPI-Host': 'free-to-play-games-database.p.rapidapi.com',
-		'X-RapidAPI-Key': '3a60d8be74msh2c52c4cf188b0cep1cfe1fjsn43e75d3457a2',
+		'X-RapidAPI-Key':
+			'3a60d8be74msh2c52c4cf188b0cep1cfe1fjsn43e75d3457a2',
 	},
 };
 
@@ -42,9 +43,11 @@ const filterType = document.querySelector('#filter-type');
 const filterPlatform = document.querySelector('#filter-platform');
 let filterTagSelected = 'all';
 let filterPlatformSelected = 'all';
-let filteredURL = 'https://free-to-play-games-database.p.rapidapi.com/api/games';
+let filteredURL =
+	'https://free-to-play-games-database.p.rapidapi.com/api/games';
 
 let page = 1;
+let lastPage;
 
 const tagList = [
 	'all',
@@ -98,35 +101,37 @@ const tagList = [
 // LOADING THE VISUAL DATA DYNAMICALLY ON BROWSE VIEW
 const loadGameData = (data) => {
 	if (gameItem === undefined) return;
+	for (let i = 0; i < gameItemParent.children.length; i++) {
+		gameItem[i].innerText = '';
+	}
+	const amtOfGames = data.length;
+	console.log(amtOfGames);
+
 	let lastIndex;
 	let startIndex;
-	if (page === 1) {
-		startIndex = 0;
-		lastIndex = 15;
+
+	lastPage = amtOfGames / 15;
+	if (lastPage % 1 != 0) {
+		lastPage = Math.ceil(lastPage);
 	}
 	startIndex = (page - 1) * 15;
+	console.log('startIndex: ' + startIndex);
 	lastIndex = 15 * page;
+	if (page === 1) {
+		startIndex = 0;
+	}
+	if (page === lastPage) {
+		console.log('LAST PAGE!');
+		lastIndex = Math.abs(15 * lastPage - amtOfGames - 15) + startIndex;
+	}
+	console.log('lastPage: ' + lastPage);
+	console.log('lastIndex: ' + lastIndex);
 	let titleArr = [];
-	let gameItems = [];
 	let count = 0;
 	for (let i = startIndex; i < lastIndex; i++) {
-		// const createGameItem = document.createElement('button');
-		// createGameItem.classList.add('game-item');
-		// createGameItem.classList.add('anim');
-		// createGameItem.classList.add('fade-anim');
-		// gameItemParent.append(createGameItem);
-
-		// gameItems.push(createGameItem);
-
 		let title = data[i].title;
 		let imgURL = data[i].thumbnail;
 		let gameID = data[i].id;
-
-		// titleArr.push(title);
-		// gameItems[count].innerText = titleArr[count];
-		// createGameImg(gameItems[count], imgURL);
-		// titleSize(gameItems[count], titleArr[count]);
-		// gameItems[count].id = gameID;
 
 		titleArr.push(title);
 		gameItem[count].innerText = titleArr[count];
@@ -136,8 +141,8 @@ const loadGameData = (data) => {
 		count++;
 	}
 
-	pageNum[0].innerText = page;
-	pageNum[1].innerText = page;
+	pageNum[0].innerText = `Page: ${page}`;
+	pageNum[1].innerText = `Page: ${page}`;
 
 	animatedItem.forEach((el) => {
 		notInView(el);
@@ -148,12 +153,14 @@ const loadGameData = (data) => {
 const createGameImg = (el, imgURL) => {
 	const img = document.createElement('img');
 	img.src = imgURL;
+	img.loading = 'lazy';
 	el.append(img);
 };
 
 // ADJUSTING FONT SIZE DEPENDING ON LENGTH OF TITLE OF GAME
 const titleSize = (gameItem, gameTitle) => {
 	if (gameTitle.length > 25) gameItem.style.fontSize = '10px';
+	else if (gameTitle.length > 22) gameItem.style.fontSize = '11px';
 	else if (gameTitle.length > 20) gameItem.style.fontSize = '12px';
 	else if (gameTitle.length > 15) gameItem.style.fontSize = '15px';
 };
@@ -161,7 +168,7 @@ const titleSize = (gameItem, gameTitle) => {
 // CHECKING API CALL IS OK
 const checkStatus = (response) => {
 	if (!response.ok) throw new Error('Something went wrong');
-	console.log('Status: OK');
+	console.log('%cStatus: OK', 'color: green;');
 	return response.json();
 };
 
@@ -194,7 +201,6 @@ document.addEventListener('DOMContentLoaded', () => {
 			});
 		});
 
-		// AUTOMATICALLY CREATING THE CATEGORY SELECT LIST OR I WOULD TAKE OVER 10 MIN JUST HARD CODING IT IN
 		tagList.forEach((tag) => {
 			const createOption = document.createElement('option');
 			filterType.append(createOption);
@@ -207,8 +213,12 @@ document.addEventListener('DOMContentLoaded', () => {
 			if (this.value === 'all') {
 				filteredURL = `https://free-to-play-games-database.p.rapidapi.com/api/games?platform=${filterPlatformSelected}`;
 				loadGameList();
-			} else if (this.value === 'all' && filterPlatformSelected === 'all') {
-				filteredURL = 'https://free-to-play-games-database.p.rapidapi.com/api/games';
+			} else if (
+				this.value === 'all' &&
+				filterPlatformSelected === 'all'
+			) {
+				filteredURL =
+					'https://free-to-play-games-database.p.rapidapi.com/api/games';
 				loadGameList();
 			} else if (filterPlatformSelected === 'all') {
 				console.log('Changed Category only!');
@@ -229,7 +239,8 @@ document.addEventListener('DOMContentLoaded', () => {
 				filteredURL = `https://free-to-play-games-database.p.rapidapi.com/api/games?category=${filterTagSelected}`;
 				loadGameList();
 			} else if (this.value === 'all' && filterTagSelected === 'all') {
-				filteredURL = 'https://free-to-play-games-database.p.rapidapi.com/api/games';
+				filteredURL =
+					'https://free-to-play-games-database.p.rapidapi.com/api/games';
 				loadGameList();
 			} else if (filterTagSelected === 'all') {
 				filterPlatformSelected = this.value;
@@ -252,21 +263,14 @@ document.addEventListener('DOMContentLoaded', () => {
 	}
 });
 const loadGameList = () => {
-	console.log('Filter by: ' + filterTagSelected);
-	console.log('Platform: ' + filterPlatformSelected);
+	console.log(`%cFilter: ${filterTagSelected}`, 'color: purple;');
+	console.log(`%cPlatform: ${filterPlatformSelected}`, 'color: purple;');
 	fetch(filteredURL, options)
 		.then(checkStatus)
 		.then(loadGameData)
 		.catch((err) => console.error(err));
 };
 
-// FILTERING AND ADJUSTING GAME LIST SHOWING FUNCTIONS
-// searchBtn.addEventListener('click', function() {
-// 	 let searchCat = searchType.value;
-// 	 filteredURL = 'https://free-to-play-games-database.p.rapidapi.com/api/games';
-// })
-
-// SHOW THE DETAILED INFO OF GAME SELECTED
 const loadGameSelected = (el) => {
 	console.log('Game Selected!');
 	topElements.style.display = 'none';
@@ -301,7 +305,10 @@ const gameDetails = (data) => {
 
 const loadGameInfo = function (el) {
 	let elementId = el.id;
-	fetch(`https://free-to-play-games-database.p.rapidapi.com/api/game?id=${elementId}`, options)
+	fetch(
+		`https://free-to-play-games-database.p.rapidapi.com/api/game?id=${elementId}`,
+		options
+	)
 		.then(checkStatus)
 		.then((data) => {
 			console.log(data);
@@ -311,13 +318,12 @@ const loadGameInfo = function (el) {
 };
 
 const nextPageFunc = () => {
+	if (page === lastPage || lastPage === undefined) return;
 	page++;
-	console.log('Page: ' + page);
 };
 const prevPageFunc = () => {
 	if (page === 1) return;
 	page--;
-	console.log('Page: ' + page);
 };
 
 // FADE ANIMATION FUNCTIONS
@@ -326,7 +332,8 @@ const elementInView = (el, scrollOffset) => {
 
 	if (
 		elementTop >=
-			(Window.innerHeight || document.documentElement.clientHeight) - scrollOffset ||
+			(Window.innerHeight || document.documentElement.clientHeight) -
+				scrollOffset ||
 		elementTop <= -scrollOffset
 	)
 		return false;
