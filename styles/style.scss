@@ -48,7 +48,7 @@ html {
 
 		.nav-bar {
 			width: 100%;
-			height: $headerHeightMobPort;
+			height: 20px;
 			padding: 1em 0 1em 0;
 			background-color: $sectionColorDark;
 			box-shadow: 0 0 3vh rgb(0, 0, 0);
@@ -62,6 +62,8 @@ html {
 					list-style: none;
 					a {
 						text-decoration: none;
+						padding: 0.5em 1.5em;
+						border: 1px solid #b0a3a3;
 
 						&:hover {
 							color: red;
@@ -389,7 +391,7 @@ html {
 			flex-direction: column;
 			.games-margin {
 				width: 90%;
-				max-width: 1700px;
+				// max-width: 1700px;
 				margin: auto;
 				background-color: rgba(0, 0, 0, 0.25);
 
@@ -550,6 +552,8 @@ html {
 	}
 
 	footer {
+		display: flex;
+		flex-direction: column;
 		margin-top: 3em;
 		padding: 1em 0;
 		border-top: 1px solid white;
@@ -557,14 +561,23 @@ html {
 		background-color: $sectionColorDark;
 		width: 100%;
 
+		.to-top::before {
+			content: 'To Top';
+			position: absolute;
+			font-size: 1rem;
+			top: -30%;
+			left: 24%;
+		}
+
 		.to-top {
 			position: fixed;
+			cursor: pointer;
 			z-index: 1;
 			left: 2vw;
 			bottom: 5vh;
 			font-size: 4em;
 			color: rgba(255, 255, 255, 0.75);
-			background-color: rgba(255, 255, 255, 0.1);
+			background-color: rgba(255, 255, 255, 0.15);
 			border-radius: 50%;
 			width: 1.5em;
 			border: none;
@@ -601,8 +614,16 @@ html {
 				transform: translateX(0);
 			}
 		}
+		.about {
+			// display: block;
+			// text-align: center;
+			width: fit-content;
+			margin: 0 auto;
+		}
+		.about:hover {
+			color: white;
+		}
 		a {
-			display: block;
 			text-align: center;
 			color: rgb(199, 199, 199);
 		}
