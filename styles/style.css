@@ -80,7 +80,6 @@ html body {
     text-decoration: none;
     margin: 3em 0;
     width: 30vw;
-    height: -webkit-fit-content;
     height: -moz-fit-content;
     height: fit-content;
     padding: 1em;
@@ -159,18 +158,7 @@ html body {
     box-shadow: 0 5px 1em rgba(0, 0, 0, 0.5);
     border-top: 1px solid white;
     font-size: 0.9em;
-    -webkit-animation: leftSlide 1s ease-out forwards;
-            animation: leftSlide 1s ease-out forwards;
-  }
-  @-webkit-keyframes leftSlide {
-    0% {
-      opacity: 0;
-      transform: translateX(-70vw);
-    }
-    100% {
-      opacity: 100%;
-      transform: translateX(0);
-    }
+    animation: leftSlide 1s ease-out forwards;
   }
   @keyframes leftSlide {
     0% {
@@ -193,18 +181,7 @@ html body {
     box-shadow: 0 5px 1em rgba(0, 0, 0, 0.5);
     border-top: 1px solid white;
     font-size: 0.9em;
-    -webkit-animation: rightSlide 1s 1s ease-out forwards;
-            animation: rightSlide 1s 1s ease-out forwards;
-  }
-  @-webkit-keyframes rightSlide {
-    0% {
-      opacity: 0;
-      transform: translateX(50vw);
-    }
-    100% {
-      opacity: 100%;
-      transform: translateX(0);
-    }
+    animation: rightSlide 1s 1s ease-out forwards;
   }
   @keyframes rightSlide {
     0% {
@@ -230,7 +207,6 @@ html body {
     padding: 2em 2em 2em 2em;
     font-size: 1em;
     max-width: 50vw;
-    max-height: -webkit-min-content;
     max-height: -moz-min-content;
     max-height: min-content;
     margin: 5em 2em 5em 2em;
@@ -397,7 +373,6 @@ html body {
     grid-row: 1;
     margin: auto;
     width: 100%;
-    height: -webkit-fit-content;
     height: -moz-fit-content;
     height: fit-content;
   }
@@ -443,7 +418,6 @@ html body {
   }
   main .game .game-wrapper .game-screenshots .game-screenshot {
     width: 27vw;
-    height: -webkit-fit-content;
     height: -moz-fit-content;
     height: fit-content;
   }
@@ -538,7 +512,6 @@ html body {
     transform: translateX(0);
   }
   footer .about {
-    width: -webkit-fit-content;
     width: -moz-fit-content;
     width: fit-content;
     margin: 0 auto;
@@ -592,7 +565,6 @@ html body {
   main .game .game-wrapper {
     display: flex;
     flex-direction: column;
-    height: -webkit-fit-content;
     height: -moz-fit-content;
     height: fit-content;
     gap: 3vh;
@@ -629,6 +601,8 @@ html body {
     max-width: 500px;
   }
   main .games .games-margin .container {
+    height: -moz-max-content;
+    height: max-content;
     grid-template-columns: repeat(2, 42.5vw);
   }
   main .games .games-margin .container .game-item img {

@@ -11,7 +11,7 @@ const options = {
 // ALL VARIABLES USED
 const gameItemParent = document.querySelector('.container');
 const gameItem = document.querySelectorAll('.game-item');
-const animatedItem = document.querySelectorAll('.anim');
+let animatedItem = document.querySelectorAll('.anim');
 const nextPage = document.querySelector('.next-page');
 const nextPageB = document.querySelector('#next-page');
 const prevPage = document.querySelector('.prev-page');
@@ -101,11 +101,14 @@ const tagList = [
 // LOADING THE VISUAL DATA DYNAMICALLY ON BROWSE VIEW
 const loadGameData = (data) => {
 	if (gameItem === undefined) return;
-	for (let i = 0; i < gameItemParent.children.length; i++) {
-		gameItem[i].innerText = '';
+	if (gameItemParent.children.length > 0) {
+		console.log('GameItems in Game Parent List!');
+		gameItemParent.textContent = '';
 	}
+
+	console.log(data.length);
 	const amtOfGames = data.length;
-	console.log(amtOfGames);
+	console.log(`%cTotal Games: ${amtOfGames}`, 'color: #CD96CD');
 
 	let lastIndex;
 	let startIndex;
@@ -124,8 +127,6 @@ const loadGameData = (data) => {
 		console.log('LAST PAGE!');
 		lastIndex = Math.abs(15 * lastPage - amtOfGames - 15) + startIndex;
 	}
-	console.log('lastPage: ' + lastPage);
-	console.log('lastIndex: ' + lastIndex);
 	let titleArr = [];
 	let count = 0;
 	for (let i = startIndex; i < lastIndex; i++) {
@@ -134,19 +135,33 @@ const loadGameData = (data) => {
 		let gameID = data[i].id;
 
 		titleArr.push(title);
-		gameItem[count].innerText = titleArr[count];
-		createGameImg(gameItem[count], imgURL);
-		titleSize(gameItem[count], titleArr[count]);
-		gameItem[count].id = gameID;
+		createGameItem(titleArr[count], gameID, imgURL);
+
 		count++;
 	}
 
 	pageNum[0].innerText = `Page: ${page}`;
 	pageNum[1].innerText = `Page: ${page}`;
 
-	animatedItem.forEach((el) => {
-		notInView(el);
+	animatedItem = document.querySelectorAll('.anim');
+	scrollAnimManager();
+};
+
+// CREATING THE GAME ITEM PARENT BEFORE CREATING THE CHILD ELEMENT WITH THE GAME IMG
+const createGameItem = (title, gameID, imgURL) => {
+	const gI = document.createElement('button');
+	gI.innerText = title;
+	gI.id = gameID;
+	gI.classList.add('game-item');
+	gI.classList.add('anim');
+	gI.classList.add('fade-anim');
+	gameItemParent.append(gI);
+
+	gI.addEventListener('click', function () {
+		loadGameSelected(this);
 	});
+
+	createGameImg(gI, imgURL);
 };
 
 // CREATING, APPENDING, AND SETTING SRC OF THE GAME THUMBNAIL
@@ -167,8 +182,8 @@ const titleSize = (gameItem, gameTitle) => {
 
 // CHECKING API CALL IS OK
 const checkStatus = (response) => {
-	if (!response.ok) throw new Error('Something went wrong');
-	console.log('%cStatus: OK', 'color: green;');
+	if (!response.ok) throw new Error('Something went wrong ❌');
+	console.log('%cStatus: OK ✅', 'color: lightgreen;');
 	return response.json();
 };
 
@@ -193,12 +208,6 @@ document.addEventListener('DOMContentLoaded', () => {
 		prevPageB.addEventListener('click', () => {
 			prevPageFunc();
 			loadGameList();
-		});
-
-		gameItem.forEach((el) => {
-			el.addEventListener('click', function () {
-				loadGameSelected(this);
-			});
 		});
 
 		tagList.forEach((tag) => {
@@ -263,8 +272,8 @@ document.addEventListener('DOMContentLoaded', () => {
 	}
 });
 const loadGameList = () => {
-	console.log(`%cFilter: ${filterTagSelected}`, 'color: purple;');
-	console.log(`%cPlatform: ${filterPlatformSelected}`, 'color: purple;');
+	console.log(`%cFilter: ${filterTagSelected}`, 'color: pink;');
+	console.log(`%cPlatform: ${filterPlatformSelected}`, 'color: pink;');
 	fetch(filteredURL, options)
 		.then(checkStatus)
 		.then(loadGameData)
@@ -342,7 +351,7 @@ const elementInView = (el, scrollOffset) => {
 
 const scrollAnimManager = () => {
 	animatedItem.forEach((el) => {
-		if (elementInView(el, 100)) {
+		if (elementInView(el, 50)) {
 			displayScrolledElement(el);
 		} else notInView(el);
 	});

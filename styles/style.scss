@@ -719,6 +719,7 @@ html {
 		}
 	}
 	main .games .games-margin .container {
+		height: max-content;
 		grid-template-columns: repeat(2, 42.5vw);
 		.game-item img {
 			width: 42.5vw;
