@@ -1,7 +1,7 @@
 # Free_the_Games
 JavaScript - HTML - ScSS
 
-A small website created to browser all free games available at the moment in a sleek simple interface.
+A small website created to browse all free games available at the moment in a sleek simple interface.
 
 - This website was created to learn mostly about fetching data with Axios and incorporating smooth and simple eye catching animations for a video game like feel.
 
