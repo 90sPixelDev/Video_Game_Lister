@@ -102,7 +102,7 @@ const tagList = [
 const loadGameData = (data) => {
 	if (gameItem === undefined) return;
 	if (gameItemParent.children.length > 0) {
-		console.log('GameItems in Game Parent List!');
+		// console.log('GameItems in Game Parent List!');
 		gameItemParent.textContent = '';
 	}
 
@@ -112,20 +112,27 @@ const loadGameData = (data) => {
 
 	let lastIndex;
 	let startIndex;
+	let lastPage;
+	const amtOfGamesPerPage = 16;
 
-	lastPage = amtOfGames / 15;
+	lastPage = amtOfGames / amtOfGamesPerPage;
 	if (lastPage % 1 != 0) {
 		lastPage = Math.ceil(lastPage);
 	}
-	startIndex = (page - 1) * 15;
+	startIndex = (page - 1) * amtOfGamesPerPage;
 	console.log('startIndex: ' + startIndex);
-	lastIndex = 15 * page;
+	lastIndex = amtOfGamesPerPage * page;
 	if (page === 1) {
 		startIndex = 0;
 	}
 	if (page === lastPage) {
 		console.log('LAST PAGE!');
-		lastIndex = Math.abs(15 * lastPage - amtOfGames - 15) + startIndex;
+		lastIndex =
+			Math.abs(
+				amtOfGamesPerPage * lastPage -
+					amtOfGames -
+					amtOfGamesPerPage
+			) + startIndex;
 	}
 	let titleArr = [];
 	let count = 0;
@@ -268,6 +275,10 @@ document.addEventListener('DOMContentLoaded', () => {
 			bottomElements.style.display = 'flex';
 
 			gameElements.style.display = 'none';
+
+			screenshotsParent.replaceChildren();
+
+			console.log('Removed last game images in screenshot area!');
 		});
 	}
 });
@@ -300,7 +311,7 @@ const gameDetails = (data) => {
 	gameInfoReleaseDate.innerText = data.release_date;
 	gameInfoDescription.innerText = data.short_description;
 
-	console.log(data.screenshots.length);
+	// console.log(data.screenshots.length);
 
 	for (let i = 0; i < data.screenshots.length; i++) {
 		let createImg = document.createElement('img');
